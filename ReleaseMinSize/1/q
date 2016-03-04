@@ -1,0 +1,275 @@
+Turbo Dump  Version 5.0.16.12 Copyright (c) 1988, 2000 Inprise Corporation
+                   Display of File SAACRYPT.DLL
+
+Old Executable Header
+
+DOS File Size                                      10000h  ( 65536. )
+Load Image Size                                      450h  (  1104. )
+Relocation Table entry count                          0000h  (     0. )
+Relocation Table address                              0040h  (    64. )
+Size of header record      (in paragraphs)            0004h  (     4. )
+Minimum Memory Requirement (in paragraphs)            0000h  (     0. )
+Maximum Memory Requirement (in paragraphs)            FFFFh  ( 65535. )
+File load checksum                                    0000h  (     0. )
+Overlay Number                                        0000h  (     0. )
+
+Initial Stack Segment  (SS:SP)			  0000:00B8
+Program Entry Point    (CS:IP)			  0000:0000
+
+
+Portable Executable (PE) File
+
+Header base: 000000F8
+
+CPU type                 80386
+Flags                    210E [ executable backwards 32bit library ]
+DLL flags                0000 [ ]
+Linker Version           6.0
+Time stamp               3F6EB729 : Mon Sep 22 12:47:37 2003
+O/S Version              4.0
+User Version             0.0
+Subsystem Version        4.0
+Subsystem                0002 [ Windows GUI ]
+Object count             00000005
+Symbols offset           00000000
+Symbols count            00000000
+Optional header size     00E0
+Magic #                  10B
+Code size                00007000
+Init Data size           00009000
+Uninit Data size         00000000
+Entry RVA                00003AB5
+Image base               10000000
+Code base                00001000
+Data base                00008000
+Object/File align        00001000/00001000
+Reserved                 00000000
+Image size               00011000
+Header size              00001000
+Checksum                 00000000
+Stack reserve/commit     00100000/00001000
+Heap reserve/commit      00100000/00001000
+Number interesting RVAs  00000010
+Name                   RVA       Size  
+------------------  --------  --------
+Exports             00008F80  000000A5
+Imports             000087B4  00000078
+Resources           0000D000  000013B8
+Exceptions          00000000  00000000
+Security            00000000  00000000
+Fixups              0000F000  00000990
+Debug               00000000  00000000
+Description         00000000  00000000
+Global Ptr          00000000  00000000
+TLS                 00000000  00000000
+Callbacks           00000000  00000000
+Bound Imports       00000000  00000000
+Import Addr Table   00008000  00000188
+Delayed Imports     00000000  00000000
+COM Runtime         00000000  00000000
+reserved            00000000  00000000
+
+Object table:
+#   Name      VirtSize    RVA     PhysSize  Phys off  Flags   
+--  --------  --------  --------  --------  --------  --------
+01  .text     00006A22  00001000  00007000  00001000  60000020 [CER]
+02  .rdata    00001025  00008000  00002000  00008000  40000040 [IR]
+03  .data     00002FE0  0000A000  00002000  0000A000  C0000040 [IRW]
+04  .rsrc     000013B8  0000D000  00002000  0000C000  40000040 [IR]
+05  .reloc    000010A0  0000F000  00002000  0000E000  42000040 [DIR]
+
+Key to section flags:
+  C - contains code
+  D - discardable
+  E - executable
+  I - contains initialized data
+  R - readable
+  W - writeable
+
+******************************************************************************
+Section:             Import
+  ImportLookUpTblRVA:000088B0
+  Time Stamp:        00000000
+  Forwarder Chain:   00000000 (index of first forwarder reference)
+
+Imports from KERNEL32.dll
+    (hint = 005D) DisableThreadLibraryCalls
+    (hint = 00F7) GetCurrentProcess
+    (hint = 0094) FindFirstFileA
+    (hint = 01AA) InitializeCriticalSection
+    (hint = 01C1) LeaveCriticalSection
+    (hint = 0055) DeleteCriticalSection
+    (hint = 0034) CreateFileA
+    (hint = 02DF) WriteFile
+    (hint = 001B) CloseHandle
+    (hint = 011A) GetLastError
+    (hint = 01E4) MultiByteToWideChar
+    (hint = 01B0) InterlockedIncrement
+    (hint = 0066) EnterCriticalSection
+    (hint = 01AD) InterlockedDecrement
+    (hint = 0309) lstrlenW
+    (hint = 0218) ReadFile
+    (hint = 0112) GetFileSize
+    (hint = 02A3) TlsFree
+    (hint = 019B) HeapCreate
+    (hint = 019D) HeapDestroy
+    (hint = 02D2) WideCharToMultiByte
+    (hint = 022F) RtlUnwind
+    (hint = 00CA) GetCommandLineA
+    (hint = 0174) GetVersion
+    (hint = 019F) HeapFree
+    (hint = 0199) HeapAlloc
+    (hint = 007D) ExitProcess
+    (hint = 029E) TerminateProcess
+    (hint = 00FA) GetCurrentThreadId
+    (hint = 02A5) TlsSetValue
+    (hint = 02A2) TlsAlloc
+    (hint = 0271) SetLastError
+    (hint = 02A4) TlsGetValue
+    (hint = 026D) SetHandleCount
+    (hint = 0152) GetStdHandle
+    (hint = 0115) GetFileType
+    (hint = 0150) GetStartupInfoA
+    (hint = 0124) GetModuleFileNameA
+    (hint = 00B2) FreeEnvironmentStringsA
+    (hint = 00B3) FreeEnvironmentStringsW
+    (hint = 0106) GetEnvironmentStrings
+    (hint = 0108) GetEnvironmentStringsW
+    (hint = 00BF) GetCPInfo
+    (hint = 02BF) VirtualFree
+    (hint = 02BB) VirtualAlloc
+    (hint = 01A2) HeapReAlloc
+    (hint = 026A) SetFilePointer
+    (hint = 01BF) LCMapStringA
+    (hint = 01C0) LCMapStringW
+    (hint = 0153) GetStringTypeA
+    (hint = 0156) GetStringTypeW
+    (hint = 027C) SetStdHandle
+    (hint = 00B9) GetACP
+    (hint = 0131) GetOEMCP
+    (hint = 013E) GetProcAddress
+    (hint = 01C2) LoadLibraryA
+    (hint = 00AA) FlushFileBuffers
+
+Imports from USER32.dll
+    (hint = 01BE) MessageBoxA
+
+Imports from ADVAPI32.dll
+    (hint = 0058) CryptEncrypt
+    (hint = 0142) OpenProcessToken
+    (hint = 00F5) LookupPrivilegeValueA
+    (hint = 0017) AdjustTokenPrivileges
+    (hint = 015F) RegCreateKeyExA
+    (hint = 0182) RegSaveKeyA
+    (hint = 015B) RegCloseKey
+    (hint = 006B) CryptSetKeyParam
+    (hint = 0052) CryptDecrypt
+    (hint = 0063) CryptGetKeyParam
+    (hint = 005E) CryptGenKey
+    (hint = 0065) CryptGetUserKey
+    (hint = 005D) CryptExportKey
+    (hint = 0073) CryptVerifySignatureA
+    (hint = 0055) CryptDestroyKey
+    (hint = 0051) CryptCreateHash
+    (hint = 0066) CryptHashData
+    (hint = 0071) CryptSignHashA
+    (hint = 0054) CryptDestroyHash
+    (hint = 0068) CryptImportKey
+    (hint = 0069) CryptReleaseContext
+    (hint = 004E) CryptAcquireContextA
+
+Imports from OLEAUT32.dll
+    (ord. =    6)
+    (ord. =    2)
+    (ord. =  162)
+    (ord. =    7)
+
+Imports from ATL.DLL
+    (ord. =   30)
+    (ord. =   16)
+    (ord. =   21)
+    (ord. =   23)
+    (ord. =   15)
+    (ord. =   18)
+    (ord. =   57)
+    (ord. =   32)
+    (ord. =   58)
+
+******************************************************************************
+Section:             Exports
+  Flags:             00000000
+  Time Stamp:        3F6EB728 : Mon Sep 22 12:47:36 2003
+  Major Version:     0000
+  Minor Version:     0000
+
+Exports from saaCrypt.DLL
+  4 exported name(s), 4 export addresse(s).  Ordinal base is 1.
+  Sorted by Name:
+    RVA      Ord. Hint Name
+    -------- ---- ---- ----
+    00002801    1 0000 DllCanUnloadNow
+    0000280D    2 0001 DllGetClassObject
+    00002827    3 0002 DllRegisterServer
+    00002837    4 0003 DllUnregisterServer
+
+******************************************************************************
+Section:             Resources
+  Flags:             00000000
+  Time Stamp:        00000000
+  Major Version:     0000
+  Minor Version:     0000
+
+Resources:
+Type          Name                   Lang Id
+--------------------------------------------
+[2 named entries, 2 ID entries]
+REGISTRY  (next directory @00000030)
+
+              [0 named entries, 1 ID entries]
+              type: Unknown (101)  (next directory @00000090)
+
+                                     [0 named entries, 1 ID entries]
+                                     type: Unknown (1049)  (data @000000F0)
+                                         Offset:    0000D160
+                                         Size:      00000270
+                                         Code Page: 00000000
+                                         Reserved:  00000000
+
+TYPELIB  (next directory @00000048)
+
+              [0 named entries, 1 ID entries]
+              type: Cursor (1)  (next directory @000000A8)
+
+                                     [0 named entries, 1 ID entries]
+                                     type: Unknown (1033)  (data @00000100)
+                                         Offset:    0000D6B0
+                                         Size:      00000CD4
+                                         Code Page: 00000000
+                                         Reserved:  00000000
+
+type: String Table (6)  (next directory @00000060)
+
+              [0 named entries, 1 ID entries]
+              type: Font Directory (7)  (next directory @000000C0)
+
+                                     [0 named entries, 1 ID entries]
+                                     type: Unknown (1033)  (data @00000110)
+                                         Offset:    0000E388
+                                         Size:      00000030
+                                         Code Page: 00000000
+                                         Reserved:  00000000
+
+type: Version (16)  (next directory @00000078)
+
+              [0 named entries, 1 ID entries]
+              type: Cursor (1)  (next directory @000000D8)
+
+                                     [0 named entries, 1 ID entries]
+                                     type: Unknown (1033)  (data @00000120)
+                                         Offset:    0000D3D0
+                                         Size:      000002DC
+                                         Code Page: 00000000
+                                         Reserved:  00000000
+
+
+

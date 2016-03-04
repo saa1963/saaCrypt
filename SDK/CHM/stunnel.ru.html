@@ -1,0 +1,649 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv=content-type content="text/html; charset=UTF-8">
+<title>stunnel.8</title>
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<BODY>
+
+<A NAME="__index__"></A>
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#name">NAME</A></LI>
+	<LI><A HREF="#synopsis">SYNOPSIS</A></LI>
+	<LI><A HREF="#description">DESCRIPTION</A></LI>
+	<LI><A HREF="#options">OPTIONS</A></LI>
+	<LI><A HREF="#configuration file">CONFIGURATION FILE</A></LI>
+	<UL>
+
+		<LI><A HREF="#global options">GLOBAL OPTIONS</A></LI>
+		<LI><A HREF="#servicelevel options">SERVICE-LEVEL OPTIONS</A></LI>
+	</UL>
+
+	<LI><A HREF="#return value">RETURN VALUE</A></LI>
+	<LI><A HREF="#examples">EXAMPLES</A></LI>
+	<LI><A HREF="#files">FILES</A></LI>
+	<LI><A HREF="#bugs">BUGS</A></LI>
+	<LI><A HREF="#restrictions">RESTRICTIONS</A></LI>
+	<LI><A HREF="#notes">NOTES</A></LI>
+	<UL>
+
+		<LI><A HREF="#inetd mode">INETD MODE</A></LI>
+		<LI><A HREF="#certificates">CERTIFICATES</A></LI>
+		<LI><A HREF="#randomness">RANDOMNESS</A></LI>
+	</UL>
+
+	<LI><A HREF="#see also">SEE ALSO</A></LI>
+	<LI><A HREF="#author">AUTHOR</A></LI>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="name">NAME</A></H1>
+<P>stunnel - Универсальный SSL/TLS тунель</P>
+<P>
+<HR>
+<H1><A NAME="synopsis">SYNOPSIS</A></H1>
+<DL>
+<DT><STRONG><A NAME="item_Unix%3A"><STRONG>Unix:</STRONG></A></STRONG><BR>
+<DD>
+<STRONG>stunnel</STRONG> [&lt;filename&gt;] | -fd&nbsp;n | -help | -version | -sockets
+<P></P>
+<DT><STRONG><A NAME="item_WIN32%3A"><STRONG>WIN32:</STRONG></A></STRONG><BR>
+<DD>
+<STRONG>stunnel</STRONG> [ [-install | -uninstall | -start | -stop]
+    [-quiet] [&lt;filename&gt;] ] | -help | -version | -sockets
+<P></P></DL>
+<P>
+<HR>
+<H1><A NAME="description">DESCRIPTION</A></H1>
+<P><STRONG>stunnel</STRONG> утилита разработанная для создания <EM>TLS</EM> защищенного соединения
+между клиентом и локальным (<EM>Iinetd</EM>-запускаемым) или удаленным сервером. 
+Таким образом, не имея поддержки TLS в том или ином демоне(сервисе) в Вашей системы, Вы можете легко
+обеспечить защиту(шифрование, одностороннюю или двустороннюю аутентификацию) соединения 
+с использыванием <EM>TLS</EM>.
+<STRONG>stunnel</STRONG> может быть использован для добавления функции <EM>TLS</EM> для
+популярных <EM>Inetd</EM> сервисов, тиких как <EM>POP-2</EM>, <EM>POP-3</EM>, и <EM>IMAP</EM> , так же для 
+сервисов как NNTP, SMTP и HTTP, или организацию PPP тунелей без изменения кода самих сервисов.</P>
+<P>Этот продукт, для реализации <EM>TLS</EM> использует либо пакеты Security Support Provider Interface (SSPI)
+от Microsoft (www.microsoft.com) или Крипто-Про(www.cryptopro.ru), либо пакет OpenSSL написанный 
+Eric Young (<A HREF="mailto:eay@cryptsoft.com">eay@cryptsoft.com</A>)</P>
+<P>
+<HR>
+<H1><A NAME="options">OPTIONS</A></H1>
+<DL>
+<DT><STRONG><A NAME="item_%3Cfilename%3E">&lt;<STRONG>filename</STRONG>&gt;</A></STRONG><BR>
+<DD>
+Использовать указанный конфигурационный файл
+<P></P>
+<DT><STRONG><A NAME="item_n"><STRONG>-fd n</STRONG> (Unix only)</A></STRONG><BR>
+<DD>
+Прочитать конфигурационный файл из указанного дескриптора
+<P></P>
+<DT><STRONG><A NAME="item_%2Dhelp"><STRONG>-help</STRONG></A></STRONG><BR>
+<DD>
+Напечатать справку по <STRONG>stunnel</STRONG>
+<P></P>
+<DT><STRONG><A NAME="item_%2Dversion"><STRONG>-version</STRONG></A></STRONG><BR>
+<DD>
+Печать версии <STRONG>stunnel</STRONG>
+<P></P>
+<DT><STRONG><A NAME="item_%2Dsockets"><STRONG>-sockets</STRONG></A></STRONG><BR>
+<DD>
+Печать опций для сокета
+<P></P>
+<DT><STRONG><A NAME="item_install"><STRONG>-install</STRONG> (NT/2000/XP only)</A></STRONG><BR>
+<DD>
+Установить NT сервис
+<P></P>
+<DT><STRONG><A NAME="item_uninstall"><STRONG>-uninstall</STRONG> (NT/2000/XP only)</A></STRONG><BR>
+<DD>
+Удалить NT сервис
+<P></P>
+<DT><STRONG><A NAME="item_start"><STRONG>-start</STRONG> (NT/2000/XP only)</A></STRONG><BR>
+<DD>
+Запустить NT сервис
+<P></P>
+<DT><STRONG><A NAME="item_stop"><STRONG>-stop</STRONG> (NT/2000/XP only)</A></STRONG><BR>
+<DD>
+Остановить NT сервис
+<P></P>
+<DT><STRONG><A NAME="item_quiet"><STRONG>-quiet</STRONG> (NT/2000/XP only)</A></STRONG><BR>
+<DD>
+Не открывать окошки с сообщениями
+<P></P></DL>
+<P>
+<HR>
+<H1><A NAME="configuration file">CONFIGURATION FILE</A></H1>
+<P>Каждая строка конфигурационного файла должна быть:</P>
+<UL>
+<LI>
+Пустой строкой (игнорируется);
+<P></P>
+<LI>
+Комментарий начинающийся с  ';' (игнорируется);
+<P></P>
+<LI>
+Парой 'option_name = option_value';
+<P></P>
+<LI>
+Строкой '[service_name]', с которой начиинается секция описания конкретного сервиса;
+<P></P></UL>
+<P>
+<H2><A NAME="global options">GLOBAL OPTIONS</A></H2>
+<DL>
+<DT><STRONG><A NAME="item_directory"><STRONG>chroot</STRONG> = directory (Unix only)</A></STRONG><BR>
+<DD>
+Каталог вызова функции <A HREF="#item_chroot"><CODE>chroot()</CODE></A> которая вызывается после разбора конфигурационного файла <STRONG>stunnel</STRONG>
+<P>Примечания:</P>
+<P>1)Использование данной возможности крайне желательно сопровождать использованием <STRONG>setuid</STRONG>;</P>
+<P>2)При создании замкнутого окружения, в нем должны бытьустановлены все внешние обьекты CryptoAPI/SSPI,
+<EM>CApath</EM>, <EM>CRLpath</EM>, <EM>pid</EM>, <EM>exec</EM> дожны находиться в нем. Например, если вы используете (TCP Wrappers)
+вы дожны скопировать файлы /etc/hosts.allow /etc/hosts.deny внутрь каталога <STRONG>chroot</STRONG>.</P>
+<P></P>
+<DT><STRONG><A NAME="item_rle"><STRONG>compression</STRONG> = zlib | <CODE>rle(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Алгоритм сжатия данных
+<P>По умолчанию: без сжатия</P>
+<P></P>
+<DT><STRONG><A NAME="item_debug_%3D_%5Bfacility%2E%5Dlevel"><STRONG>debug</STRONG> = [facility.]level</A></STRONG><BR>
+<DD>
+Уровень протоколирования
+<P>Уровни задаются аналогично syslogd
+emerg (0), alert (1), crit (2), err (3), warning (4), notice (5),
+info (6), или debug (7).  Все сообщения с заданным уровнем и уровнем ниже 
+заданного будут запротоколированы.  Пример <STRONG>debug = debug</STRONG> или <STRONG>debug = 7</STRONG>.</P>
+<P>По умолчанию: <STRONG>debug = notice</STRONG> и используется syslog(Unix only.)
+Параметры <STRONG>facility</STRONG> и <STRONG>level</STRONG> регистронезависимы.</P>
+<P></P>
+<DT><STRONG><A NAME="item_no"><STRONG>foreground</STRONG> = yes | no (Unix only)</A></STRONG><BR>
+<DD>
+foreground режим
+<P>Оставаться в  foreground режиме (не использовать fork) и писать протокол в stderr
+(если не указан <STRONG>output</STRONG>).</P>
+<P>По умолчанию: no, т.е в режиме демона</P>
+<P></P>
+<DT><STRONG><A NAME="item_output_%3D_file"><STRONG>output</STRONG> = file</A></STRONG><BR>
+<DD>
+Писать протокол в <STRONG>file</STRONG>, а не в syslog
+<P>Допустимо значение /dev/stdout</P>
+<P></P>
+<DT><STRONG><A NAME="item_file"><STRONG>pid</STRONG> = file (Unix only)</A></STRONG><BR>
+<DD>
+Файл для сохранения pid
+<P>Если аргумент не задан, то pid не сохраняется.</P>
+<P>Если задана опция <STRONG>chroot</STRONG>, то путь указывается относително ее.</P>
+<P></P>
+<DT><STRONG><A NAME="item_bytes"><STRONG>RNDbytes</STRONG> = <CODE>bytes(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Количество байт для чтения из фала со случайной последовательностью.
+<P>Количество байт для чтения из файла со случайной последовательностью. Для OpenSSL 
+версии меньше 0.9.5a, она так же определяет сколько байт достаточно для инициализации
+датчика случайных чисел.  Более поздние версии OpenSSL имеют встроенные 
+функции для определения достаточного количества байт для инициализации.</P>
+<P></P>
+<DT><STRONG><STRONG>RNDfile</STRONG> = <CODE>file(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Путь к файлу со случайной последовательностью
+<P>Библиотека OpenSSL использует эти данные для инициализации  
+датчика случайных чисел.</P>
+<P></P>
+<DT><STRONG><STRONG>RNDoverwrite</STRONG> = yes | <CODE>no(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Перезаписывать файл со случайной последовательностью
+<P>По умолчанию: yes</P>
+<P></P>
+<DT><STRONG><A NAME="item_service_%3D_servicename"><STRONG>service</STRONG> = servicename</A></STRONG><BR>
+<DD>
+Имя сервиса
+<P><STRONG>On Unix:</STRONG> В <EM>inetd</EM> это имя для  TCP Wrapper библиотеки.</P>
+<P><STRONG>On NT/2000/XP:</STRONG> Имя NT сервиса для контрольной панели.</P>
+<P>По умолчанию: stunnel</P>
+<P></P>
+<DT><STRONG><A NAME="item_groupname"><STRONG>setgid</STRONG> = groupname (Unix only)</A></STRONG><BR>
+<DD>
+Выплняется <CODE>setgid()</CODE> в эту группу.
+<P></P>
+<DT><STRONG><A NAME="item_username"><STRONG>setuid</STRONG> = username (Unix only)</A></STRONG><BR>
+<DD>
+Выполняется <CODE>setuid()</CODE> под этого пользователя
+<P></P>
+<DT><STRONG><A NAME="item_socket_%3D_a%7Cl%7Cr%3Aoption%3Dvalue%5B%3Avalue%5"><STRONG>socket</STRONG> = a|l|r:option=value[:value]</A></STRONG><BR>
+<DD>
+Опции <STRONG>setsockopt()</STRONG> для сокета приема соединений, а так же для локального и удаленного сокетов.
+<P>Формат значений для <STRONG>SO_LINGER</STRONG> : l_onof:l_linger.
+Формат значений для времени: tv_sec:tv_usec.</P>
+<P>Пример:</P>
+<PRE>
+    socket = l:SO_LINGER=1:60
+        Установить минунтный таймаут для локального сокета
+    socket = r:TCP_NODELAY=1
+        Выключить Nagle алгоритм для удаленного сокета
+    socket = a:SO_REUSEADDR=0
+        Запретить повторное использование портов TCP (по умолчанию разрешено)
+    socket = a:SO_BINDTODEVICE=lo
+        Принимать соединения только с loopback интерфейса</PRE>
+<P></P>
+<DT><STRONG><STRONG>taskbar</STRONG> = yes | no (WIN32 only)</STRONG><BR>
+<DD>
+Разрешить иконку.
+<P>По умолчанию: yes</P>
+<P></P></DL>
+<P>
+<H2><A NAME="servicelevel options">SERVICE-LEVEL OPTIONS</A></H2>
+<P>Каждая секция в конфигурационном файле начинается с имени сервиса в 
+квадратных скобках. Это имя будет использоваться библиотекой libwrap и PAM,
+а так же дает возможность различать протокольные сообщения.</P>
+<P>Примечание:
+Если вы хотите запускать <STRONG>stunnel</STRONG> в <EM>Inetd</EM> режиме, смотрите секцию
+<EM>Inetd MODE</EM> описанную ниже</P>
+<DL>
+<DT><STRONG><A NAME="item_accept_%3D_%5Bhost%3A%5Dport"><STRONG>accept</STRONG> = [host:]port</A></STRONG><BR>
+<DD>
+Принимать соединения только с host:port
+<P>Если host не указан, то для всех ip данного компьютера.</P>
+<P></P>
+<DT><STRONG><A NAME="item_store"><STRONG>CApath</STRONG> = <CODE>store(SSPI)</CODE></A></STRONG><BR>
+<DD>
+Хранилище доверенных корневых центров сертификации, используемое вместо ROOT.
+<P>Пример: My</P>
+<P></P>
+<DT><STRONG><STRONG>CApath</STRONG> = <CODE>directory(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Каталог с сертификатами CA
+<P>Каталог  в которой  <STRONG>stunnel</STRONG> будет искать сертификаты CA при использовании
+<EM>verify</EM>. Сертификаты в этой дериктории должны называться как XXXXXXXX.0 
+где XXXXXXXX значение хеша Der кодированно сертификата.
+(первые 4 байта в  MD5 хеше).</P>
+<P>Если указан <EM>chroot</EM> то <EM>CApath</EM> указывается относительно него.</P>
+<P></P>
+<DT><STRONG><A NAME="item_certfile"><STRONG>CAfile</STRONG> = <CODE>certfile(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Файл с сертификатом СА
+<P>Этот файл может сожержать множество сертификатов СА. Используется в  <EM>verify</EM>.</P>
+<P></P>
+<DT><STRONG><A NAME="item_pemfile"><STRONG>cert</STRONG> = <CODE>pemfile(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Цепочка сертификатов PEM файл. Сертификаты должны быть в PEM
+формате и должны начинаться с сертификата верхнего в цепочке (корневого CA).
+<P>Сертификат stunnel обязателен для использования в качестве сервера.
+Указание этой опции в режиме клиента необходимо для удовлетворения
+требования TLS сервера на двустороннюю аутентификацию по сертификату клиента.
+Использование клиентского сертификата опционально.</P>
+<P></P>
+<DT><STRONG><A NAME="item_Id"><STRONG>cert</STRONG> = Cert-Id(SSPI)</A></STRONG><BR>
+<DD>
+Сертификат в der кодировке. Соответствующий сертификат в хранилище должен иметь ссылку на закрытый ключ.
+<P></P>
+<DT><STRONG><A NAME="item_ciphers_%3D_cipherlist"><STRONG>ciphers</STRONG> = cipherlist</A></STRONG><BR>
+<DD>
+Список разрешенный SSL/TLS алгоритмов.
+<P>Пример:  GOST34102001-WITH-GOST28147-OFB-GOST28147:DES-CBC3-SHA:IDEA-CBC-MD5</P>
+<P></P>
+<DT><STRONG><A NAME="item_keysize"><STRONG>minkeysize</STRONG> = keysize (SSPI – only)</A></STRONG><BR>
+<DD>
+Минимальная длина ключа
+<P></P>
+<DT><STRONG><A NAME="item_client_%3D_yes_%7C_no"><STRONG>client</STRONG> = yes | no</A></STRONG><BR>
+<DD>
+Режим клиента (удаленный сервис использует TLS/SSL)
+<P>По умолчанию: no (режим сервера)</P>
+<P></P>
+<DT><STRONG><A NAME="item_connect_%3D_%5Bhost%3A%5Dport"><STRONG>connect</STRONG> = [host:]port</A></STRONG><BR>
+<DD>
+Соединять с удаленным сервером, если не указано то с localhost
+<P></P>
+<DT><STRONG><STRONG>CRLpath</STRONG> = <CODE>directory(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Каталог сожержащий CRL.
+<P>Примечание: Файлы в этой дериктории должны быть названы
+как XXXXXXXX.0 где XXXXXXXX значение хеша  CRL.</P>
+<P>Если указан <EM>chroot</EM> то <EM>CApath</EM> указывается относительно него.</P>
+<P></P>
+<DT><STRONG><A NAME="item_Store"><STRONG>CRLpath</STRONG> = <CODE>Store(SSPI)</CODE></A></STRONG><BR>
+<DD>
+Хранилище CRL, используемое вместо хранилища по умолчанию.
+<P>Пример: My</P>
+<P></P>
+<DT><STRONG><STRONG>CRLfile</STRONG> = <CODE>certfile(OpenSSL)</CODE></STRONG><BR>
+<DD>
+CRL файл
+<P>Этот файл содержит множество CRL, используеммых в  <EM>verify</EM>.</P>
+<P></P>
+<DT><STRONG><A NAME="item_delay_%3D_yes_%7C_no"><STRONG>delay</STRONG> = yes | no</A></STRONG><BR>
+<DD>
+Задержка для DNS запроса для 'connect' опции
+<P></P>
+<DT><STRONG><A NAME="item_number"><STRONG>engineNum</STRONG> = engine <CODE>number(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Использовать для чтения закрытого ключа engine
+<P>Нумерация начинается с 1.</P>
+<P></P>
+<DT><STRONG><A NAME="item_executable_path"><STRONG>exec</STRONG> = executable_path (Unix only)</A></STRONG><BR>
+<DD>
+Запустить локально inetd программу
+<P><EM>exec</EM> путь относителен <EM>chroot</EM> дериктории если она задана.</P>
+<P></P>
+<DT><STRONG><A NAME="item_execargs_%3D_%240_%241_%242_%2E%2E%2E_%28Unix_only"><STRONG>execargs</STRONG> = $0 $1 $2 ... (Unix only)</A></STRONG><BR>
+<DD>
+Аргументы для программы указанной в  <EM>exec</EM> опции, включая ее имя-($0)
+<P>Кавычки не поддерживаются.
+Аргументы должны быть разделены пробелами.</P>
+<P></P>
+<DT><STRONG><STRONG>ident</STRONG> = <CODE>username(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Использовать IDENT (RFC 1413) проверку имени
+<P></P>
+<DT><STRONG><A NAME="item_keyfile"><STRONG>key</STRONG> = <CODE>keyfile(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Закрытый ключ для сертификата из <EM>cert</EM> опции
+<P>Закрытый ключ необходим для аутентификации обладателя сертификата.
+Файл должен быть защищен от доступа третьих лиц,в Unix системах
+можно использовать следующую команду:</P>
+<PRE>
+    chmod 600 keyfile</PRE>
+<P>По умолчанию: значение <EM>cert</EM> опции</P>
+<P></P>
+<DT><STRONG><A NAME="item_local_%3D_host"><STRONG>local</STRONG> = host</A></STRONG><BR>
+<DD>
+Интерфейс, который должен быть использован для соединения с удаленны хостом.
+<P></P>
+<DT><STRONG><A NAME="item_url"><STRONG>ocsp</STRONG> = <CODE>url(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+OCSP сервер для проверки сертификатов
+<P></P>
+<DT><STRONG><A NAME="item_SSL_options"><STRONG>options</STRONG> = <CODE>SSL_options(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Опции для библиотеки OpenSSL
+<P>Параметры для OpenSSL описанные в <EM>SSL_CTX_set_options(3ssl)</EM> 
+реководстве но без префискса  <EM>SSL_OP_</EM>.
+Несколько <EM>options</EM>  могут быть использованы для
+указания множества опций.</P>
+<P>Например, для совместимости с Eudora SSL реализацией 
+следущие опции должны быть установлены.</P>
+<PRE>
+    options = DONT_INSERT_EMPTY_FRAGMENTS</PRE>
+<P></P>
+<DT><STRONG><A NAME="item_protocol_%3D_proto"><STRONG>protocol</STRONG> = proto</A></STRONG><BR>
+<DD>
+Протокол внутри  SSL/TLS
+<P>Поддерживаемые: cifs, connect, nntp, pop3, smtp</P>
+<P></P>
+<DT><STRONG><A NAME="item_protocolCredentials_%3D_username%3Apassword"><STRONG>protocolCredentials</STRONG> = username:password</A></STRONG><BR>
+<DD>
+пароль и имя пользователя для протокола <EM>proto</EM>
+<P></P>
+<DT><STRONG><A NAME="item_protocolHost_%3D_host%3Aport"><STRONG>protocolHost</STRONG> = host:port</A></STRONG><BR>
+<DD>
+Удаленный сервер для внутренего протокола
+<P></P>
+<DT><STRONG><STRONG>pty</STRONG> = yes | no (Unix only)</STRONG><BR>
+<DD>
+Создать псевдо-терминал для 'exec' опции
+<P></P>
+<DT><STRONG><A NAME="item_session_%3D_timeout"><STRONG>session</STRONG> = timeout</A></STRONG><BR>
+<DD>
+Таймаут сессии
+<P></P>
+<DT><STRONG><A NAME="item_version"><STRONG>sslVersion</STRONG> = <CODE>version(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Версия  SSL протокола
+<P>Допустимые опции: all, SSLv2, SSLv3, TLSv1</P>
+<P></P>
+<DT><STRONG><A NAME="item_TIMEOUTbusy_%3D_seconds"><STRONG>TIMEOUTbusy</STRONG> = seconds</A></STRONG><BR>
+<DD>
+таймаут для ожидания входящий данных
+<P></P>
+<DT><STRONG><A NAME="item_seconds"><STRONG>TIMEOUTclose</STRONG> = <CODE>seconds(OpenSSL)</CODE></A></STRONG><BR>
+<DD>
+Таймаут для ожидания  close_notify
+<P></P>
+<DT><STRONG><A NAME="item_TIMEOUTconnect_%3D_seconds"><STRONG>TIMEOUTconnect</STRONG> = seconds</A></STRONG><BR>
+<DD>
+Таймаут для соединения с удаленным хостом
+<P></P>
+<DT><STRONG><A NAME="item_TIMEOUTidle_%3D_seconds"><STRONG>TIMEOUTidle</STRONG> = seconds</A></STRONG><BR>
+<DD>
+Таймаут для keep alive
+<P></P>
+<DT><STRONG><STRONG>transparent</STRONG> = yes | no (Unix only)</STRONG><BR>
+<DD>
+transparent proxy
+<P>Re-write address to appear as if wrapped daemon is connecting
+from the SSL client machine instead of the machine running <STRONG>stunnel</STRONG>.
+This option is only available in local mode (<EM>exec</EM> option)
+by LD_PRELOADing env.so shared library or in remote mode (<EM>connect</EM>
+option) on Linux 2.2 kernel compiled with <EM>transparent proxy</EM> option
+and then only in server mode. Note that this option will not combine
+with proxy mode (<EM>connect</EM>) unless the client's По умолчанию route to the target
+machine lies through the host running <STRONG>stunnel</STRONG>, which cannot be localhost.</P>
+<P></P>
+<DT><STRONG><A NAME="item_level"><STRONG>verify</STRONG> = <CODE>level(SSPI)</CODE></A></STRONG><BR>
+<DD>
+Уровень проверки цепочки
+<PRE>
+    default – Проверка по умолчанию, если не заданы CRLpath или CRLfile, то использует доступ к CDP по http/ldap;
+    level 3 - Проверять используя локально установленные сертификаты;
+    level 2 - Проверять каждый сертификат;
+    level 1 - Проверять каждый сертификат если есть;
+    level 0 - Не проверять;
+FIX ME!!!    НЕ ЗАКОНЧЕНА</PRE>
+<P></P>
+<DT><STRONG><STRONG>verify</STRONG> = <CODE>level(OpenSSL)</CODE></STRONG><BR>
+<DD>
+Уровень проверки
+<PRE>
+    level 1 - Проверять каждый сертификат если есть
+    level 2 - Проверять каждый сертификат
+    level 3 - Проверять используя локально установленные сертификаты
+    default - Не проверять</PRE>
+<P></P></DL>
+<P>
+<HR>
+<H1><A NAME="return value">RETURN VALUE</A></H1>
+<P><STRONG>stunnel</STRONG> Возвращает нулевой код завершения при успешном выполнении,
+при ошибках возвращается не нулевой код возвращения.</P>
+<P>
+<HR>
+<H1><A NAME="examples">EXAMPLES</A></H1>
+<P>Для реализации инкапсуляции <EM>imapd</EM> в SSL/TLS:</P>
+<PRE>
+    [imapd]
+    accept = 993
+    exec = /usr/sbin/imapd
+    execargs = imapd</PRE>
+<P>Тунелирование  <EM>pppd</EM> через SSL/TLS по порту 2020,</P>
+<PRE>
+    [vpn]
+    accept = 2020
+    exec = /usr/sbin/pppd
+    execargs = pppd local
+    pty = yes</PRE>
+<P>Для запуска <STRONG>stunnel</STRONG> в <EM>inetd</EM> стиле
+можно использовать следующий <EM>stunnel.conf</EM>.</P>
+<P>Примечание: в конфигурационном файле не должно быть <EM>[service_name]</EM> секции.</P>
+<PRE>
+    exec = /usr/sbin/imapd
+    execargs = imapd</PRE>
+<P>Ниже приведен пример конфигурации engine для считывания закрытого ключа
+используя OpenSC engine.</P>
+<PRE>
+    engine=dynamic
+    engineCtrl=SO_PATH:/usr/lib/opensc/engine_pkcs11.so
+    engineCtrl=ID:pkcs11
+    engineCtrl=LIST_ADD:1
+    engineCtrl=LOAD
+    engineCtrl=MODULE_PATH:/usr/lib/pkcs11/opensc-pkcs11.so
+    engineCtrl=INIT</PRE>
+<PRE>
+    [service]
+    engineNum=1
+    key=id_45</PRE>
+<P>
+<HR>
+<H1><A NAME="files">FILES</A></H1>
+<DL>
+<DT><STRONG><A NAME="item_stunnel%2Econf"><EM>stunnel.conf</EM></A></STRONG><BR>
+<DD>
+<STRONG>stunnel</STRONG> Конфигурационный файл
+<P></P>
+<DT><STRONG><A NAME="item_stunnel%2Epem"><EM>stunnel.pem</EM></A></STRONG><BR>
+<DD>
+<STRONG>stunnel</STRONG> Сертификат и закрытый ключ
+<P></P></DL>
+<P>
+<HR>
+<H1><A NAME="bugs">BUGS</A></H1>
+<P>Опция <EM>execargs</EM> не поддерживает кавычки.</P>
+<P>
+<HR>
+<H1><A NAME="restrictions">RESTRICTIONS</A></H1>
+<P><STRONG>stunnel</STRONG> нельзя использовать с  FTP демоном из-за природы 
+FTP протокола который использует множество портов для передачи данных.</P>
+<P>
+<HR>
+<H1><A NAME="notes">NOTES</A></H1>
+<P>
+<H2><A NAME="inetd mode">INETD MODE</A></H2>
+<P>Наиболее распространненый вариант использования <STRONG>stunnel</STRONG>
+когда он слушает порт и устанавливает соединение или с другим портом 
+из опции connect или прграммой из <EM>exec</EM> опции.
+Так же могут быть причины по которым вы хотите что бы другая программа
+принимала входящие соединения и запускала <STRONG>stunnel</STRONG> из
+<EM>inetd</EM>, <EM>xinetd</EM>, или <EM>tcpserver</EM>.</P>
+<P>Например если вы имеете следующий конфиг в  \fIinetd.conf\fR:</P>
+<PRE>
+    imaps stream tcp nowait root /usr/sbin/stunnel stunnel /etc/stunnel/imaps.conf</PRE>
+<P>В таком случае  <EM>inetd</EM> демон  ответственен за привязку сокета 
+и передачу его в  <STRONG>stunnel</STRONG> когда соединение установлено.
+Таким образом  <STRONG>stunnel</STRONG> не имеет ни одной <EM>accept</EM> опции.
+Все <EM>Service Level Options</EM> должны содержаться в глобалных опциях
+и не должно быть ни одной <EM>[service_name]</EM> секции
+Смотри раздел <EM>EXAMPLES</EM> с примерами.</P>
+<P>
+<H2><A NAME="certificates">CERTIFICATES</A></H2>
+<P>Каждый  \s-1SSL\s0 демон должен предстваить валидный X.509 сертификат
+Так же ему нужен закрытый ключ для расшифровки входящий данных.
+Наиболее простой путь получения сертификата и закрытого ключа
+это использовать <EM>OpenSSL</EM> пакет. Больше информации про этот
+пакет можно найти в описании следующих пакетов.</P>
+<P>Две вещи наиболее важны при генерации пары сертификат-закрытый ключ для
+<STRONG>stunnel</STRONG>. Закрытый ключ не может быть зашифрован, так как сервер
+не имеет возможности получить пароль от пользователя.
+Для генерации незашифрованого ключа добавьте <EM>-nodes</EM> опцию
+при выполнении <STRONG>req</STRONG> каманды из пакета <EM>OpenSSL</EM>.</P>
+<P>Порядок следования сертификатов в <EM>.pem</EM> файле то же важен.
+Он должнет сожержать не зашифрованый закрытый ключ в начале,
+затем сертификат. Затем пустая строка после закрытого ключа и сертификата.
+Не зашифрованая информация о сертификате (в верху сертификата) должна быть удалена
+Файл должнен выглядеть вот так:</P>
+<PRE>
+    -----BEGIN RSA PRIVATE KEY-----
+    [encoded key]
+    -----END RSA PRIVATE KEY-----
+    [empty line]
+    -----BEGIN CERTIFICATE-----
+    [encoded certificate]
+    -----END CERTIFICATE-----
+    [empty line]</PRE>
+<P>
+<H2><A NAME="randomness">RANDOMNESS</A></H2>
+<P>В <STRONG>stunnel</STRONG> нужен для инициализации PRNG (Датчик псевдо случайных чисел)
+для того что бы SSL использовал хорошие последовательности.
+Следующие источники будут использоваться (в указанном порядке) до тех пор пока 
+не будет полученно соответствующие кол-во данных.</P>
+<UL>
+<LI>
+Файл указанный в  <EM>RNDfile</EM> опции.
+<P></P>
+<LI>
+Файл указанный в  переменной окружения RANDFILE (если указан).
+<P></P>
+<LI>
+Файл  .rnd в домашней дериктории, если не указана RANDFILE.
+<P></P>
+<LI>
+Файл указанный в опции '--with-random' при компиляции.
+<P></P>
+<LI>
+Сожержимое экрана если работает под Windows.
+<P></P>
+<LI>
+сокет указанный в  <EM>EGD</EM> опции.
+<P></P>
+<LI>
+Сокет указанный в опции  '--with-egd-sock' при компиляции.
+<P></P>
+<LI>
+/dev/urandom.
+<P></P></UL>
+<P>В последних версиях (&gt;=OpenSSL 0.9.5a) при получении достаточной энтропии
+источники случайных данных будут закрыты автоматически. В предыдущих версиях
+OpenSSL не существует функций для определения достаточного количества данных.</P>
+<P>Примечание:
+На Windows машинах нет консоли для интерактивного взаимодействия с пользователем
+(движение мыши, создание окон и т.д.) и содержание окна не достаточно, вам необходимо 
+созадть файл с случайной последовательностью и указать его в опции <EM>RNDfile</EM>.</P>
+<P>Файл указанный в опции <EM>RNDfile</EM> должен сожержать случайную последовательность
+это означает что он должен содержать разные данные при каждом запуске 
+<STRONG>stunnel</STRONG>.  Это будет делаться автоматически ло тех пор пока не будет 
+указана опция <EM>RNDoverwrite</EM>. Если вы хотите обновлять его вручную, то
+<EM>openssl rand</EM> команда из последней версии OpenSSL будет весьма полезна.</P>
+<P>Если  /dev/urandom доступен, OpenSSL имеет привычку инициализировать
+PRNG данными из него да же кога проверяет случайное состояние,
+таким образом на системах с ним вероятнее всего вы используете его да же
+если он в самом низу списка указаного выше.  Это не поведение <STRONG>stunnel's</STRONG>, это
+OpenSSL.</P>
+<P>
+<HR>
+<H1><A NAME="see also">SEE ALSO</A></H1>
+<DL>
+<DT><STRONG><A NAME="item_tcpd"><A HREF="#item_tcpd">tcpd(8)</A></A></STRONG><BR>
+<DD>
+Управление доступом для интернет сервисов
+<P></P>
+<DT><STRONG><A NAME="item_inetd"><A HREF="#item_inetd">inetd(8)</A></A></STRONG><BR>
+<DD>
+Интеренет 'super-server'
+<P></P>
+<DT><STRONG><A NAME="item_pam"><A HREF="#item_pam">pam(8)</A></A></STRONG><BR>
+<DD>
+модель имепрсонализации
+<P></P>
+<DT><STRONG><A NAME="item_setsockopt"><A HREF="#item_setsockopt">setsockopt(2)</A></A></STRONG><BR>
+<DD>
+Установка опций для сокета
+<P></P>
+<DT><STRONG><A NAME="item_chroot"><A HREF="#item_chroot">chroot(2)</A></A></STRONG><BR>
+<DD>
+создание замкнутого окружения
+<P></P>
+<DT><STRONG><A NAME="item_http%3A%2F%2Fstunnel%2Emirt%2Enet%2F"><EM><A HREF="http://stunnel.mirt.net/">http://stunnel.mirt.net/</A></EM></A></STRONG><BR>
+<DD>
+домашня страница <STRONG>stunnel</STRONG>
+<P></P>
+<DT><STRONG><A NAME="item_http%3A%2F%2Fwww%2Estunnel%2Eorg%2F"><EM><A HREF="http://www.stunnel.org/">http://www.stunnel.org/</A></EM></A></STRONG><BR>
+<DD>
+Часто задаваемые вопросы по <STRONG>stunnel</STRONG>
+<P></P>
+<DT><STRONG><A NAME="item_http%3A%2F%2Fwww%2Eopenssl%2Eorg%2F"><EM><A HREF="http://www.openssl.org/">http://www.openssl.org/</A></EM></A></STRONG><BR>
+<DD>
+Домашняя страница проекта OpenSSL
+<P></P></DL>
+<P>
+<HR>
+<H1><A NAME="author">AUTHOR</A></H1>
+<DL>
+<DT><STRONG><A NAME="item_Michal_Trojnara">Michal Trojnara</A></STRONG><BR>
+<DD>
+&lt;<EM><A HREF="mailto:Michal.Trojnara@mirt.net">Michal.Trojnara@mirt.net</A></EM>&gt;
+<P></P></DL>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,7 @@
+DIRS=    WebClient WebServer
+
+all: 
+	for d in $(DIRS); do ( cd $$d; $(MAKE) -f Makefile.unix ) || fail=yes; done;\
+	test -z "$$fail"
+clean: 
+	for d in $(DIRS); do ( cd $$d; $(MAKE) -f Makefile.unix clean) done

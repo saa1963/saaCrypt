@@ -1,0 +1,4 @@
+#include "..\..\..\..\CSP\src\include\csp-mobile_product.h"
+
+#define VER_FILEBUILD			4087
+#define VER_FILEBUILD_QFE		0

@@ -1,0 +1,2 @@
+out=CryptMsgSign
+include ../../examples.unix.mk

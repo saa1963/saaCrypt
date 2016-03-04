@@ -1,0 +1,2 @@
+out=DuplicatingHash
+include ../../examples.unix.mk

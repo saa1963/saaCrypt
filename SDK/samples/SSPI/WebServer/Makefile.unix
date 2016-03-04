@@ -1,0 +1,3 @@
+out=WebServer
+add_libs=-lssp -lcapi10
+include ../../examples.unix.mk

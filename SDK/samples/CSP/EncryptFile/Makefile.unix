@@ -1,0 +1,2 @@
+out=EncryptFile
+include ../../examples.unix.mk

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<VisualStudioProject ProjectType="Visual C++" Version="9,00" Name="ric" ProjectGUID="{86DB64AB-5F48-455C-BB11-8D04D03217C9}" RootNamespace="ric" TargetFrameworkVersion="131072">
+  <Platforms>
+    <Platform Name="Win32" />
+    <Platform Name="Itanium" />
+    <Platform Name="x64" />
+  </Platforms>
+  <ToolFiles>
+  </ToolFiles>
+  <Configurations>
+    <Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1" WholeProgramOptimization="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="NDEBUG" TargetEnvironment="1" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP /Zl" Optimization="3" InlineFunctionExpansion="1" FavorSizeOrSpeed="2" AdditionalIncludeDirectories="../../../include;../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="NDEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" RuntimeLibrary="0" EnableFunctionLevelLinking="true" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="NDEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib msvcrt.lib msvcrt_win2000.obj" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir);$(DDKROOT)\lib\crt\i386;$(DDKROOT)\lib\win7\i386" GenerateManifest="false" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="1" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+    <Configuration Name="Release|Itanium" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1" WholeProgramOptimization="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="NDEBUG" TargetEnvironment="2" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP /Zl" Optimization="3" InlineFunctionExpansion="1" FavorSizeOrSpeed="2" AdditionalIncludeDirectories="../../../include;../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="NDEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" RuntimeLibrary="0" EnableFunctionLevelLinking="true" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="NDEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib msvcrt.lib msvcrt_win2003.obj" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir);$(DDKROOT)\lib\crt\ia64;$(DDKROOT)\lib\win7\ia64" GenerateManifest="false" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="5" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+    <Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1" WholeProgramOptimization="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="NDEBUG" TargetEnvironment="3" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP /Zl" Optimization="3" InlineFunctionExpansion="1" FavorSizeOrSpeed="2" AdditionalIncludeDirectories="../../../include;../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="NDEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" RuntimeLibrary="0" EnableFunctionLevelLinking="true" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="NDEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib msvcrt.lib msvcrt_win2003.obj" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir);$(DDKROOT)\lib\crt\amd64;$(DDKROOT)\lib\win7\amd64" GenerateManifest="false" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="17" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+    <Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="_DEBUG" TargetEnvironment="1" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP" Optimization="0" AdditionalIncludeDirectories="../../../include,../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="_DEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" BasicRuntimeChecks="3" RuntimeLibrary="1" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="_DEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir)" GenerateManifest="false" ModuleDefinitionFile="" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="1" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+    <Configuration Name="Debug|Itanium" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="_DEBUG" TargetEnvironment="2" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP" Optimization="0" AdditionalIncludeDirectories="../../../include,../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="_DEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" BasicRuntimeChecks="3" RuntimeLibrary="1" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="_DEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir)" GenerateManifest="false" ModuleDefinitionFile="" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="5" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+    <Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)out\$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(SolutionDir)tmp\$(PlatformName)\$(ConfigurationName)\$(ProjectName)" ConfigurationType="2" UseOfMFC="0" ATLMinimizesCRunTimeLibraryUsage="false" CharacterSet="1">
+      <Tool Name="VCPreBuildEventTool" />
+      <Tool Name="VCCustomBuildTool" />
+      <Tool Name="VCXMLDataGeneratorTool" />
+      <Tool Name="VCWebServiceProxyGeneratorTool" />
+      <Tool Name="VCMIDLTool" PreprocessorDefinitions="_DEBUG" TargetEnvironment="3" TypeLibraryName="$(IntDir)/$(ProjectName).tlb" />
+      <Tool Name="VCCLCompilerTool" AdditionalOptions="/MP" Optimization="0" AdditionalIncludeDirectories="../../../include,../../../..;../../../../CSP/src/include;../../../../Shared/include" PreprocessorDefinitions="_DEBUG;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS" StringPooling="true" BasicRuntimeChecks="3" RuntimeLibrary="1" UsePrecompiledHeader="2" PrecompiledHeaderThrough="ric_prj.h" WarningLevel="4" DebugInformationFormat="3" CompileAs="0" />
+      <Tool Name="VCManagedResourceCompilerTool" />
+      <Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="_DEBUG" Culture="1049" AdditionalIncludeDirectories="..\..\..\..\CSP\src\include;..\Win32" />
+      <Tool Name="VCPreLinkEventTool" />
+      <Tool Name="VCLinkerTool" IgnoreImportLibrary="true" AdditionalDependencies="Winscard.lib cpsupr2.lib" LinkIncremental="1" AdditionalLibraryDirectories="$(OutDir)" GenerateManifest="false" ModuleDefinitionFile="" DelayLoadDLLs="user32.dll" GenerateDebugInformation="true" ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" BaseAddress="@$(ProjectDir)..\..\..\lib\$(PlatformName)\$(ConfigurationName)\coffbase.txt,$(TargetFileName)" RandomizedBaseAddress="1" DataExecutionPrevention="0" TargetMachine="17" />
+      <Tool Name="VCALinkTool" />
+      <Tool Name="VCManifestTool" />
+      <Tool Name="VCXDCMakeTool" />
+      <Tool Name="VCBscMakeTool" />
+      <Tool Name="VCFxCopTool" />
+      <Tool Name="VCAppVerifierTool" />
+      <Tool Name="VCPostBuildEventTool" />
+    </Configuration>
+  </Configurations>
+  <References>
+  </References>
+  <Files>
+    <Filter Name="Source Files" Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+      <File RelativePath="..\ric_con.c">
+      </File>
+      <File RelativePath="..\ric_disc.c">
+      </File>
+      <File RelativePath="..\Win32\ric_dll.c">
+      </File>
+      <File RelativePath="..\ric_dup.c">
+      </File>
+      <File RelativePath="..\ric_err.c">
+      </File>
+      <File RelativePath="..\ric_fop.c">
+      </File>
+      <File RelativePath="..\ric_free.c">
+      </File>
+      <File RelativePath="..\ric_inst.c">
+      </File>
+      <File RelativePath="..\ric_log.c">
+      </File>
+      <File RelativePath="..\ric_lout.c">
+      </File>
+      <File RelativePath="..\ric_pch.c">
+      </File>
+      <File RelativePath="..\ric_plen.c">
+      </File>
+      <File RelativePath="..\ric_prj.c">
+        <FileConfiguration Name="Release|Win32">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+        </FileConfiguration>
+      </File>
+      <File RelativePath="..\Win32\ric_prop.c">
+      </File>
+      <File RelativePath="..\ric_rest.c">
+      </File>
+      <File RelativePath="..\ric_same.c">
+      </File>
+      <File RelativePath="..\ric_uni.c">
+      </File>
+      <File RelativePath="..\ric_unreg.c">
+      </File>
+      <File RelativePath="..\..\version.c">
+        <FileConfiguration Name="Release|Win32">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64">
+          <Tool Name="VCCLCompilerTool" UsePrecompiledHeader="0" />
+        </FileConfiguration>
+      </File>
+      <Filter Name="APDU">
+        <File RelativePath="..\ric_vpin.c">
+        </File>
+        <File RelativePath="..\ricsf.c">
+        </File>
+        <File RelativePath="..\ricuni.c">
+        </File>
+      </Filter>
+      <Filter Name="File">
+        <File RelativePath="..\ric_clos.c">
+        </File>
+        <File RelativePath="..\ric_limit.c">
+        </File>
+        <File RelativePath="..\ric_open.c">
+        </File>
+        <File RelativePath="..\ric_rd.c">
+        </File>
+        <File RelativePath="..\ric_wr.c">
+        </File>
+      </Filter>
+      <Filter Name="ric">
+        <File RelativePath="..\ric_is.c">
+        </File>
+        <File RelativePath="..\ric_reg.c">
+        </File>
+        <File RelativePath="..\ricchp.c">
+        </File>
+        <File RelativePath="..\ricuform.c">
+        </File>
+      </Filter>
+      <Filter Name="Oscar">
+        <File RelativePath="..\osc_is.c">
+        </File>
+        <File RelativePath="..\osc_reg.c">
+        </File>
+        <File RelativePath="..\oscchp.c">
+        </File>
+        <File RelativePath="..\oscids.c">
+        </File>
+        <File RelativePath="..\oscuform.c">
+        </File>
+      </Filter>
+      <Filter Name="Oscar2">
+        <File RelativePath="..\osc2_flen.c">
+        </File>
+        <File RelativePath="..\osc2_fop.c">
+        </File>
+        <File RelativePath="..\osc2_is.c">
+        </File>
+        <File RelativePath="..\osc2_offs.c">
+        </File>
+        <File RelativePath="..\osc2_open.c">
+        </File>
+        <File RelativePath="..\osc2_rd.c">
+        </File>
+        <File RelativePath="..\osc2_rest.c">
+        </File>
+        <File RelativePath="..\osc2_wr.c">
+        </File>
+        <File RelativePath="..\osc2ids.c">
+        </File>
+        <File RelativePath="..\osc2sf.c">
+        </File>
+      </Filter>
+      <Filter Name="Magistra">
+        <File RelativePath="..\mag_chp.c">
+        </File>
+        <File RelativePath="..\mag_con.c">
+        </File>
+        <File RelativePath="..\mag_dup.c">
+        </File>
+        <File RelativePath="..\mag_fld.c">
+        </File>
+        <File RelativePath="..\mag_fop.c">
+        </File>
+        <File RelativePath="..\mag_is.c">
+        </File>
+        <File RelativePath="..\mag_is_impl.h">
+        </File>
+        <File RelativePath="..\mag_log.c">
+        </File>
+        <File RelativePath="..\mag_lout.c">
+        </File>
+        <File RelativePath="..\mag_open.c">
+        </File>
+        <File RelativePath="..\mag_rc.c">
+        </File>
+        <File RelativePath="..\mag_reg.c">
+        </File>
+        <File RelativePath="..\mag_rest.c">
+        </File>
+        <File RelativePath="..\mag_same.c">
+        </File>
+        <File RelativePath="..\mag_sf.c">
+        </File>
+        <File RelativePath="..\mag_uform.c">
+        </File>
+        <File RelativePath="..\mag_uni.c">
+        </File>
+        <File RelativePath="..\mag_unig.c">
+        </File>
+        <File RelativePath="..\mag_vpin.c">
+        </File>
+      </Filter>
+    </Filter>
+    <Filter Name="Header Files" Filter="h;hpp;hxx;hm;inl">
+      <File RelativePath="..\ric_int.h">
+      </File>
+      <File RelativePath="..\ric_prj.h">
+      </File>
+      <File RelativePath="..\Win32\ric_rc.h">
+      </File>
+      <Filter Name="Reader.h">
+        <File RelativePath="..\..\..\include\reader\oscar.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\rdr.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\ric.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\std_decl.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\sup_syse.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\sup_wnd.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\support.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader\trust.h">
+        </File>
+      </Filter>
+      <Filter Name="Reader.kit">
+        <File RelativePath="..\..\..\include\reader.kit\gen_prj.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader.kit\os_inc.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader.kit\reader.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader.kit\scard.h">
+        </File>
+        <File RelativePath="..\..\..\include\reader.kit\sup_sys.h">
+        </File>
+      </Filter>
+    </Filter>
+    <Filter Name="Resource Files">
+      <File RelativePath="..\Win32\ric_rc.rc">
+        <FileConfiguration Name="Release|Win32">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64">
+          <Tool Name="VCResourceCompilerTool" AdditionalIncludeDirectories="" />
+        </FileConfiguration>
+      </File>
+      <File RelativePath=".\Version.Itanium.rc">
+        <FileConfiguration Name="Release|Win32" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+      </File>
+      <File RelativePath="Version.Win32.rc">
+        <FileConfiguration Name="Release|Win32">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+      </File>
+      <File RelativePath="Version.x64.rc">
+        <FileConfiguration Name="Release|Win32" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|Itanium" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Release|x64">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|Itanium" ExcludedFromBuild="true">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+        <FileConfiguration Name="Debug|x64">
+          <Tool Name="VCResourceCompilerTool" />
+        </FileConfiguration>
+      </File>
+    </Filter>
+    <File RelativePath="..\Win32\magistra.ico">
+    </File>
+    <File RelativePath="..\Win32\oscar.ico">
+    </File>
+    <File RelativePath="..\Win32\ric.ico">
+    </File>
+    <File RelativePath=".\ric.proj">
+    </File>
+  </Files>
+  <Globals>
+  </Globals>
+</VisualStudioProject>

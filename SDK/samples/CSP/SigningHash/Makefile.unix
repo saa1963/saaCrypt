@@ -1,0 +1,2 @@
+out=SigningHash
+include ../../examples.unix.mk

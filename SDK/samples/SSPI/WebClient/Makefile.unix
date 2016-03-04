@@ -1,0 +1,3 @@
+out=WebClient
+add_libs=-lssp -lrdrsup -lcapi10
+include ../../examples.unix.mk

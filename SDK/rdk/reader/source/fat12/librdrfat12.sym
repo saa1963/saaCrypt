@@ -1,0 +1,5 @@
+fat12_reader_get_handle
+default_reader_get_handle
+fat12_reader_group_handle
+hdimage_reader_get_handle
+hsm_reader_get_handle

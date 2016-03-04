@@ -1,0 +1,2 @@
+out=ExportInFile
+include ../../examples.unix.mk

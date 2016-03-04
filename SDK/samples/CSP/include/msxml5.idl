@@ -1,0 +1,321 @@
+// Generated .IDL file (by the OLE/COM Object Viewer)
+// 
+// typelib filename: MSXML5.DLL
+
+import "msxml2.idl";
+
+[
+    uuid(F5078F18-C551-11D3-89B9-0000F81FE221),
+    version(5.0),
+    helpstring("Microsoft XML, v5.0")
+]
+library MSXML5
+{
+    // TLib :     // TLib : OLE Automation : {00020430-0000-0000-C000-000000000046}
+    importlib("stdole2.tlb");
+
+    // Forward declare all types defined in this typelib
+    interface IXMLDOMParseErrorCollection;
+    interface IXMLDSigKey;
+    interface IXMLDSigKeyEx;
+    interface IXMLDigitalSignature;
+    interface IXMLDigitalSignatureEx;
+
+    typedef [
+	helpstring("XMLDigitalSignature signing options")
+    ]
+    enum _XMLDSIG_WRITEKEYINFO {
+	NOKEYINFO = 0,
+	KEYVALUE = 1,
+	CERTIFICATES = 2,
+	PURGE = 4
+    } XMLDSIG_WRITEKEYINFO;
+
+    [
+	odl,
+	uuid(2933BF96-7B36-11D2-B20E-00C04F983E60),
+	dual,
+	nonextensible,
+	oleautomation
+    ]
+    interface IXMLDOMDocument3 : IXMLDOMDocument2 {
+	[id(0x000000d0), helpstring("perform runtime validation on the currently loaded XML document node")]
+	HRESULT validateNode(
+	    [in] IXMLDOMNode* node, 
+	    [out, retval] IXMLDOMParseError** errorObj);
+	[id(0x000000d1), helpstring("clone node such that clones ownerDocument is this document")]
+	HRESULT importNode(
+	    [in] IXMLDOMNode* node, 
+	    [in] VARIANT_BOOL deep, 
+	    [out, retval] IXMLDOMNode** clone);
+    };
+
+    [
+	odl,
+	uuid(3EFAA428-272F-11D2-836F-0000F87A7782),
+	helpstring("structure for reporting parser errors"),
+	dual,
+	nonextensible,
+	oleautomation
+    ]
+    interface IXMLDOMParseError2 : IXMLDOMParseError {
+	[id(0x000000be), propget]
+	HRESULT errorXPath([out, retval] BSTR* xpathexpr);
+	[id(0x000000bb), propget]
+	HRESULT allErrors([out, retval] IXMLDOMParseErrorCollection** allErrors);
+	[id(0x000000bc)]
+	HRESULT errorParameters(
+	    [in] long index, 
+	    [out, retval] BSTR* param);
+	[id(0x000000bd), propget]
+	HRESULT errorParametersCount([out, retval] long* count);
+    };
+
+    [
+	odl,
+	uuid(3EFAA429-272F-11D2-836F-0000F87A7782),
+	helpstring("structure for reporting parser errors"),
+	dual,
+	nonextensible,
+	oleautomation
+    ]
+    interface IXMLDOMParseErrorCollection : IDispatch {
+	[id(00000000), propget]
+	HRESULT item(
+	    [in] long index, 
+	    [out, retval] IXMLDOMParseError2** error);
+	[id(0x000000c1), propget]
+	HRESULT length([out, retval] long* length);
+	[id(0x000000c2), propget]
+	HRESULT next([out, retval] IXMLDOMParseError2** error);
+	[id(0x000000c3)]
+	HRESULT reset();
+	[id(0xfffffffc), propget, restricted, hidden]
+	HRESULT _newEnum([out, retval] IUnknown** ppUnk);
+    };
+
+    [
+	odl,
+	uuid(7474853B-20B3-437E-83F7-8E7F3064BE90),
+	helpstring("XML Digital Signature Key"),
+	dual,
+	nonextensible,
+	oleautomation
+    ]
+    interface IXMLDSigKey : IDispatch {
+	[id(0x00000005)]
+	HRESULT getVerifyingCertificate([out, retval] IUnknown** certificate);
+    };
+
+    [
+	odl,
+	uuid(7474853C-20B3-437E-83F7-8E7F3064BE90),
+	helpstring("XML Digital Signature Key"),
+	nonextensible
+    ]
+    interface IXMLDSigKeyEx : IXMLDSigKey {
+	HRESULT _stdcall getCSPHandle([out, retval] ULONG_PTR* hProvider);
+	HRESULT _stdcall getVerifyingCertificateContext([out, retval] void** certContext);
+    };
+
+    [
+	odl,
+	uuid(7474853D-20B3-437E-83F7-8E7F3064BE90),
+	helpstring("XML Digital Signature"),
+	dual,
+	nonextensible,
+	oleautomation
+    ]
+    interface IXMLDigitalSignature : IDispatch {
+	[id(0x00000008), propputref]
+	HRESULT signature([in] IXMLDOMNode* signatureNode);
+	[id(0x00000008), propget]
+	HRESULT signature([out, retval] IXMLDOMNode** signatureNode);
+	[id(0x00000009), propputref]
+	HRESULT store([in] IUnknown* store);
+	[id(0x00000009), propget]
+	HRESULT store([out, retval] IUnknown** store);
+	[id(0x00000007)]
+	HRESULT sign(
+	    [in] IXMLDSigKey* keyRef, 
+	    [in] XMLDSIG_WRITEKEYINFO wki, 
+	    [out, retval] IXMLDSigKey** signKeyRef);
+	[id(0x0000000a)]
+	HRESULT verify(
+	    [in] IXMLDSigKey* keyRef, 
+	    [out, retval] IXMLDSigKey** verifyKeyRef);
+	[id(0x00000006)]
+	HRESULT setReferenceData(
+	    [in] BSTR uri, 
+	    [in] IUnknown* punk);
+	[id(0x00000004)]
+	HRESULT createSAXProxy([out, retval] IUnknown** saxProxy);
+	[id(0x00000001)]
+	HRESULT createKeyFromCSP(
+	    [in] long providerType, 
+	    [in] BSTR providerName, 
+	    [in] BSTR keyContainerName, 
+	    [in] long flags, 
+	    [out, retval] IXMLDSigKey** keyRef);
+	[id(0x00000002)]
+	HRESULT createKeyFromHMACSecret(
+	    [in] BSTR base64Secret, 
+	    [in] long lHMACOutputLength, 
+	    [out, retval] IXMLDSigKey** keyRef);
+	[id(0x00000003)]
+	HRESULT createKeyFromNode(
+	    [in] IXMLDOMNode* node, 
+	    [out, retval] IXMLDSigKey** keyRef);
+    };
+
+    [
+	odl,
+	uuid(7474853E-20B3-437E-83F7-8E7F3064BE90),
+	helpstring("XML Digital Signature"),
+	nonextensible
+    ]
+    interface IXMLDigitalSignatureEx : IXMLDigitalSignature {
+	HRESULT _stdcall createKeyFromCertContext(
+	    [in] void* pCertContext, 
+	    [out, retval] IXMLDSigKeyEx** keyRef);
+	HRESULT _stdcall createKeyFromHMACSecretBinary(
+	    [in] unsigned char* pSecret, 
+	    [in] long nSecretLen, 
+	    [in] long lHMACOutputLength, 
+	    [out, retval] IXMLDSigKeyEx** keyRef);
+	HRESULT _stdcall setStoreHandle([in] void* hCertStore);
+	HRESULT _stdcall getStoreHandle([out, retval] void** hCertStore);
+	HRESULT _stdcall setDebugOutput([in] IStream* debugOutput);
+    };
+
+    [
+	uuid(88D969E5-F192-11D4-A65F-0040963251E5),
+	helpstring("W3C-DOM XML Document (Apartment)")
+    ]
+    coclass DOMDocument50 {
+	[default] interface IXMLDOMDocument3;
+	[default, source] dispinterface XMLDOMDocumentEvents;
+    };
+
+    [
+	uuid(88D969E6-F192-11D4-A65F-0040963251E5),
+	helpstring("W3C-DOM XML Document (Free threaded)")
+    ]
+    coclass FreeThreadedDOMDocument50 {
+	[default] interface IXMLDOMDocument3;
+	[default, source] dispinterface XMLDOMDocumentEvents;
+    };
+
+    [
+	uuid(88D969E7-F192-11D4-A65F-0040963251E5),
+	helpstring("object for caching schemas")
+    ]
+    coclass XMLSchemaCache50 {
+	[default] interface IXMLDOMSchemaCollection2;
+    };
+
+    [
+	uuid(88D969E8-F192-11D4-A65F-0040963251E5),
+	helpstring("object for caching compiled XSL stylesheets")
+    ]
+    coclass XSLTemplate50 {
+	[default] interface IXSLTemplate;
+    };
+
+    [
+	uuid(88D969E9-F192-11D4-A65F-0040963251E5),
+	helpstring("XML Data Source Object")
+    ]
+    coclass DSOControl50 {
+	[default] interface IDSOControl;
+    };
+
+    [
+	uuid(88D969EA-F192-11D4-A65F-0040963251E5),
+	helpstring("XML HTTP Request class.")
+    ]
+    coclass XMLHTTP50 {
+	[default] interface IXMLHTTPRequest;
+    };
+
+    [
+	uuid(88D969EB-F192-11D4-A65F-0040963251E5),
+	helpstring("Server XML HTTP Request class.")
+    ]
+    coclass ServerXMLHTTP50 {
+	[default] interface IServerXMLHTTPRequest2;
+    };
+
+    [
+	uuid(88D969EC-8B8B-4C3D-859E-AF6CD158BE0F),
+	helpstring("SAX XML Reader 5.0 coclass")
+    ]
+    coclass SAXXMLReader50 {
+	[default] interface IVBSAXXMLReader;
+	interface ISAXXMLReader;
+    };
+
+    [
+	uuid(88D969EF-F192-11D4-A65F-0040963251E5),
+	helpstring("Microsoft XML Writer 5.0 coclass")
+    ]
+    coclass MXXMLWriter50 {
+	[default] interface IMXWriter;
+	interface ISAXContentHandler;
+	interface ISAXDeclHandler;
+	interface ISAXDTDHandler;
+	interface ISAXErrorHandler;
+	interface ISAXLexicalHandler;
+	interface IVBSAXContentHandler;
+	interface IVBSAXDeclHandler;
+	interface IVBSAXDTDHandler;
+	interface IVBSAXErrorHandler;
+	interface IVBSAXLexicalHandler;
+    };
+
+    [
+	uuid(88D969F0-F192-11D4-A65F-0040963251E5),
+	helpstring("Microsoft HTML Writer 5.0 coclass")
+    ]
+    coclass MXHTMLWriter50 {
+	[default] interface IMXWriter;
+	interface ISAXContentHandler;
+	interface ISAXDeclHandler;
+	interface ISAXDTDHandler;
+	interface ISAXErrorHandler;
+	interface ISAXLexicalHandler;
+	interface IVBSAXContentHandler;
+	interface IVBSAXDeclHandler;
+	interface IVBSAXDTDHandler;
+	interface IVBSAXErrorHandler;
+	interface IVBSAXLexicalHandler;
+    };
+
+    [
+	uuid(88D969EE-F192-11D4-A65F-0040963251E5),
+	helpstring("SAX Attributes 5.0 coclass")
+    ]
+    coclass SAXAttributes50 {
+	[default] interface IMXAttributes;
+	interface IVBSAXAttributes;
+	interface ISAXAttributes;
+    };
+
+    [
+	uuid(88D969F1-F192-11D4-A65F-0040963251E5),
+	helpstring("MX Namespace Manager 5.0 coclass")
+    ]
+    coclass MXNamespaceManager50 {
+	[default] interface IVBMXNamespaceManager;
+	interface IMXNamespaceManager;
+    };
+
+    [
+	uuid(88D969F5-F192-11D4-A65F-0040963251E5),
+	helpstring("Microsoft XML Digital Signature 5.0 coclass")
+    ]
+    coclass MXDigitalSignature50 {
+	[default] interface IXMLDigitalSignature;
+	interface IXMLDigitalSignatureEx;
+    };
+};

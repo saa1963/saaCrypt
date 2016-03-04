@@ -1,0 +1,398 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "ric_rc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#define _TEXT(x) x
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "ric_rc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#define _TEXT(x) x\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_RIC                 ICON                    "ric.ico"
+IDI_OSCAR               ICON                    "oscar.ico"
+IDI_TRUST               ICON                    "magistra.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_SIZE_WIZARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SIZE DIALOGEX 0, 0, 225, 202
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Настройка разметки"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "ATR:",IDC_STATIC,7,9,48,10
+    EDITTEXT        IDC_ATR,60,7,158,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Маска:",IDC_STATIC,7,25,46,10
+    EDITTEXT        IDC_MASK,60,23,158,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Приложение:",IDC_STATIC_APPLICATION,7,40,47,10,NOT WS_VISIBLE
+    EDITTEXT        IDC_APPLICATION,61,38,28,13,ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE
+    LTEXT           "Masks:",IDC_STATIC_FILE1,7,63,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE1,93,63,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Primary:",IDC_STATIC_FILE2,7,78,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE2,93,78,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Name:",IDC_STATIC_FILE6,7,95,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE6,93,95,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    CONTROL         "Разрешить резервную копию",IDC_RESERVE,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,7,127,211,11
+    CONTROL         "&Зарегистрирован в smartcard winlogon",IDC_WINLOGON,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,7,114,211,10
+END
+
+IDD_SIZE_WIZARD DIALOGEX 0, 0, 317, 143
+STYLE DS_LOCALEDIT | DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "ATR:",IDC_STATIC,7,7,43,12
+    CONTROL         "",IDC_ATR,"HexLine",WS_BORDER | WS_TABSTOP | 0x80,60,7,251,12
+    LTEXT           "Маска:",IDC_STATIC,7,22,43,12
+    CONTROL         "",IDC_MASK,"HexLine",WS_BORDER | WS_TABSTOP | 0x80,60,23,251,12
+    LTEXT           "Приложение:",IDC_STATIC_APPLICATION,7,38,43,12,NOT WS_VISIBLE
+    CONTROL         "",IDC_APPLICATION,"HexLine",NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,60,38,30,12
+    LTEXT           "Masks:",IDC_STATIC_FILE1,7,56,28,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE1,38,55,31,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Обычно установлено 56 - для хранения одного ключа, 60 для двух",IDC_STATIC_FILE1_REM,75,56,236,11,NOT WS_VISIBLE
+    LTEXT           "Primary:",IDC_STATIC_FILE2,7,72,29,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE2,38,71,31,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Обычно установлено 36 - для хранения одного ключа, 70 для двух",IDC_STATIC_FILE2_REM,75,72,236,11,NOT WS_VISIBLE
+    LTEXT           "Name:",IDC_STATIC_FILE6,7,88,29,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE6,38,87,32,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Обычно установлено в 62",IDC_STATIC_FILE6_REM,76,88,235,11,NOT WS_VISIBLE
+    CONTROL         "Разрешить резервную копию",IDC_RESERVE,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,7,125,304,11
+    CONTROL         "&Зарегистрировать в smartcard winlogon",IDC_WINLOGON,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,7,108,304,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RIC_CARRIER_TYPE    "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR_CARRIER_TYPE  "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RIC_NAME            "РИК"
+    IDS_RIC_NICKNAME        "RIC"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR_NAME          "Оскар"
+    IDS_OSCAR_NICKNAME      "OSCAR"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR2_NAME         "Оскар CSP 2.0"
+    IDS_OSCAR2_NICKNAME     "OSCAR2"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTD_NAME         "Магистра Debug"
+    IDS_TRUSTD_NICKNAME     "TRUSTD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUST_NAME          "Магистра"
+    IDS_TRUST_NICKNAME      "TRUST"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTS_NAME         "Магистра Сбербанк/BGS"
+    IDS_TRUSTS_NICKNAME     "TRUSTS"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR2_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTD_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUST_CARRIER_TYPE  "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTS_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_BASE_FSIZE_TITLE    "Какая разметка карты?"
+    IDS_BASE_FSIZE_SUBTITLE "Установите параметры разметки карты"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_SIZE_WIZARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SIZE DIALOGEX 0, 0, 225, 202
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Format properties"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "ATR:",IDC_STATIC,7,9,42,10
+    EDITTEXT        IDC_ATR,55,7,163,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Mask:",IDC_STATIC,7,25,42,10
+    EDITTEXT        IDC_MASK,55,23,163,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Application:",IDC_STATIC_APPLICATION,7,40,42,10,NOT WS_VISIBLE
+    EDITTEXT        IDC_APPLICATION,55,38,32,13,ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE
+    LTEXT           "Masks:",IDC_STATIC_FILE1,7,63,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE1,93,63,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Primary:",IDC_STATIC_FILE2,7,78,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE2,93,78,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Name:",IDC_STATIC_FILE6,7,95,73,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE6,93,95,125,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | NOT WS_VISIBLE
+    CONTROL         "Enable reserve",IDC_RESERVE,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,7,127,211,11
+    CONTROL         "&Registered with smartcard winlogon",IDC_WINLOGON,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,7,114,211,10
+END
+
+IDD_SIZE_WIZARD DIALOGEX 0, 0, 317, 143
+STYLE DS_LOCALEDIT | DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "ATR:",IDC_STATIC,7,7,43,12
+    CONTROL         "",IDC_ATR,"HexLine",WS_BORDER | WS_TABSTOP | 0x80,60,7,251,12
+    LTEXT           "MASK:",IDC_STATIC,7,22,43,12
+    CONTROL         "",IDC_MASK,"HexLine",WS_BORDER | WS_TABSTOP | 0x80,60,23,251,12
+    LTEXT           "Application:",IDC_STATIC_APPLICATION,7,38,43,12,NOT WS_VISIBLE
+    CONTROL         "",IDC_APPLICATION,"HexLine",NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,60,38,30,12
+    LTEXT           "Masks:",IDC_STATIC_FILE1,7,56,43,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE1,60,55,31,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Usually 56 to keep one key 60 to keep two keys",IDC_STATIC_FILE1_REM,105,56,152,11,NOT WS_VISIBLE
+    LTEXT           "Primary:",IDC_STATIC_FILE2,7,72,43,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE2,60,71,31,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Usually 36 to keep one key 70 to keep two keys",IDC_STATIC_FILE2_REM,105,72,152,11,NOT WS_VISIBLE
+    LTEXT           "Name:",IDC_STATIC_FILE6,7,88,43,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FILE6,60,87,32,12,ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    LTEXT           "Usually 62",IDC_STATIC_FILE6_REM,104,88,152,11,NOT WS_VISIBLE
+    CONTROL         "Enable reserve",IDC_RESERVE,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,7,125,304,11
+    CONTROL         "&Register with smartcard winlogon",IDC_WINLOGON,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,7,108,304,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RIC_CARRIER_TYPE    "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR_CARRIER_TYPE  "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RIC_NAME            "RIC"
+    IDS_RIC_NICKNAME        "RIC"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR_NAME          "OSCAR"
+    IDS_OSCAR_NICKNAME      "OSCAR"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR2_NAME         "OSCAR CSP 2.0"
+    IDS_OSCAR2_NICKNAME     "OSCAR2"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTD_NAME         "Magistra Debug"
+    IDS_TRUSTD_NICKNAME     "TRUSTD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUST_NAME          "Magistra"
+    IDS_TRUST_NICKNAME      "TRUST"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTS_NAME         "Magistra SBRF/BGS"
+    IDS_TRUSTS_NICKNAME     "TRUSTS"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OSCAR2_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTD_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUST_CARRIER_TYPE  "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUSTS_CARRIER_TYPE "SCARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_BASE_FSIZE_TITLE    "Whow card formated?"
+    IDS_BASE_FSIZE_SUBTITLE "Input card format atrributes"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

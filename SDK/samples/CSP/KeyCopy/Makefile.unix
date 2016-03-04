@@ -1,0 +1,2 @@
+out=KeyCopy
+include ../../examples.unix.mk

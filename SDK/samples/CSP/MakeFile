@@ -1,0 +1,71 @@
+#
+# Copyright(C) 2000-2010 Проект ИОК
+#
+# Этот файл содержит информацию, являющуюся
+# собственностью компании Крипто Про.
+#
+# Любая часть этого файла не может быть скопирована,
+# исправлена, переведена на другие языки,
+# локализована или модифицирована любым способом,
+# откомпилирована, передана по сети с или на
+# любую компьютерную систему без предварительного
+# заключения соглашения с компанией Крипто Про.
+#
+# Программный код, содержащийся в этом файле, предназначен
+# исключительно для целей обучения и не может быть использован
+# для защиты информации.
+#
+# Компания Крипто-Про не несет никакой
+# ответственности за функционирование этого кода.
+#
+
+DIRS = \
+    CodingData\~ \
+    CreatingHash\~ \
+    CreatingKeyContainer\~ \
+    CryptAcquireContext\~ \
+    CryptMessages\~ \
+    CryptMsgSign\~ \
+    DecryptFile\~ \
+    DerivingSessionKey\~ \
+    DuplicatingHash\~ \
+    DuplicatingSessionKey\~ \
+    EncryptFile\~ \
+    EnumeratingProviders\~ \
+    ExportInFile\~ \
+    ExportingCertificate\~ \
+    ExportingSessionKey\~ \
+    KeyCopy\~ \
+    SessionKeyParameters\~ \
+    SigningHash\~ \
+    SILENT\~ \
+    CEnvelop\~ \
+    CSignData\~ \
+    Request\~ \
+    WordSignCheck\~ \
+    WordPluginCheck\~ \
+    XMLSignForVerify\~ \
+    XMLVerify\~ \
+    XMLVerifyTwoSigs\~ \
+
+   	
+SDKPROJ =CSP
+
+!include "..\dirprop.mak"
+
+all: $(DIRS)
+
+clean:
+    @$(MAKE) -nologo /$(MAKEFLAGS) clean=1
+
+csources: mkd $(DIRS)
+    @copy makefile "$(dest)"
+    @copy examples.unix.mk "$(dest)"
+    @copy csp.mak "$(dest)"
+    @copy Makefile.unix "$(dest)"
+
+mkd:
+    -mkdir "$(dest)"
+
+$(DIRS):
+!include "..\dir.mak"

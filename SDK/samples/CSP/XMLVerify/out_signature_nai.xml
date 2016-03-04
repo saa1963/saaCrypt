@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <ds:SignedInfo>
+    <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <ds:SignatureMethod Algorithm="urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102001-gostr3411"/>
+    <ds:Reference URI="#obj" Type="http://www.w3.org/2000/09/xmldsig#;Object">
+          <ds:DigestMethod Algorithm="urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr3411"/>
+        <ds:DigestValue>NYkHX/RZS+9CktMKgg0SaAR8El8m5CccVVtT6JCOjtA=</ds:DigestValue>
+    </ds:Reference>
+  </ds:SignedInfo>
+  <ds:SignatureValue>
+    h6IcOOHWxTTMYhnQarJ31sF4SpDJGySzbN2JoFkcuNFruS2ts3bZrYLMaxzeJbmnHfKgHG1/
+    b3jK6hGMKmSXYA==
+  </ds:SignatureValue>
+  <ds:Object Id="obj" MimeType="text/plain">Hello, World!</ds:Object>
+   <ds:KeyInfo>
+      <X509Data xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <X509Certificate>
+          MIIC+jCCAqmgAwIBAgIKFvsGoQACAAA98jAIBgYqhQMCAgMwZTEgMB4GCSqGSIb3DQEJARYR
+          aW5mb0BjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMRMwEQYDVQQKEwpDUllQVE8tUFJPMR8w
+          HQYDVQQDExZUZXN0IENlbnRlciBDUllQVE8tUFJPMB4XDTA5MTIxNDE0MzU1N1oXDTEwMTIx
+          NDE0NDU1N1owIDELMAkGA1UEBhMCUlUxETAPBgNVBAMTCFRlc3RVc2VyMGMwHAYGKoUDAgIT
+          MBIGByqFAwICJAAGByqFAwICHgEDQwAEQElltM5/KG3j655YMX3Je6AcVsZfl23Nd6a9+Lwz
+          B+xDzHzyX3fM4x658/rRsTcnHUmoOBAMiuOOYt5n898KBp+jggF8MIIBeDAOBgNVHQ8BAf8E
+          BAMCBPAwGQYJKoZIhvcNAQkPBAwwCjAIBgYqhQMCAhUwHQYDVR0OBBYEFIb6bqzezoehRwwe
+          gQnARjaYv1RoMBMGA1UdJQQMMAoGCCsGAQUFBwMCMB8GA1UdIwQYMBaAFG2PXgXZX6yRF5Qe
+          lZoFMDg3ehAqMFUGA1UdHwROMEwwSqBIoEaGRGh0dHA6Ly93d3cuY3J5cHRvcHJvLnJ1L2Nl
+          cnRlbnJvbGwvVGVzdCUyMENlbnRlciUyMENSWVBUTy1QUk8oMikuY3JsMIGeBggrBgEFBQcB
+          AQSBkTCBjjAzBggrBgEFBQcwAYYnaHR0cDovL3d3dy5jcnlwdG9wcm8ucnUvb2NzcG5jL29j
+          c3Auc3JmMFcGCCsGAQUFBzAChktodHRwOi8vd3d3LmNyeXB0b3Byby5ydS9DZXJ0RW5yb2xs
+          L0NyeXB0b19UZXN0JTIwQ2VudGVyJTIwQ1JZUFRPLVBSTygyKS5jcnQwCAYGKoUDAgIDA0EA
+          pUkaHdRvNj0fxyBRTePTVge4KFPmofbJm3n1/UnQRRHZgzHJoTXtQ5NxhrBOnu2S7lvHTJyy
+          Ly94rZW7A06icA==
+        </X509Certificate>
+      </X509Data>
+    </ds:KeyInfo>
+</ds:Signature>

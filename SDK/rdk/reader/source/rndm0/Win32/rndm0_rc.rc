@@ -1,0 +1,105 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "rndm0_rc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "rndm0_rc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_RNDM0               ICON                    "rndm0.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RNDM0_NAME          "Физический ДСЧ константа."
+    IDS_RNDM0_NICKNAME      "RNDM0"
+    IDS_RNDM0_DETAIL_NAME   "Физический ДСЧ, возвращающий постоянное значение."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FAPSI0_NAME         "Последовательность ФАПСИ константа."
+    IDS_FAPSI0_NICKNAME     "FAPSI0"
+    IDS_FAPSI0_DETAIL_NAME   "Постоянная последовательность ФАПСИ."
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RNDM0_NAME          "Hard constant random-number generator."
+    IDS_RNDM0_NICKNAME      "RNDM0"
+    IDS_RNDM0_DETAIL_NAME   "Hard random-number generator, which always returns the constant."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FAPSI0_NAME         "FAPSI Constant random-number generator."
+    IDS_FAPSI0_NICKNAME     "FAPSI0"
+    IDS_FAPSI0_DETAIL_NAME  "FAPSI random-number sequance, which always returns the constant."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////

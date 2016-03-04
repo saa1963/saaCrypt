@@ -1,0 +1,26 @@
+HKCR
+{
+	SaaCrypt.CrClass.1 = s 'CrClass Class'
+	{
+		CLSID = s '{1B4F737C-1E35-41BB-846B-D7D8EF17D5C0}'
+	}
+	SaaCrypt.CrClass = s 'CrClass Class'
+	{
+		CLSID = s '{1B4F737C-1E35-41BB-846B-D7D8EF17D5C0}'
+		CurVer = s 'SaaCrypt.CrClass.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1B4F737C-1E35-41BB-846B-D7D8EF17D5C0} = s 'CrClass Class'
+		{
+			ProgID = s 'SaaCrypt.CrClass.1'
+			VersionIndependentProgID = s 'SaaCrypt.CrClass'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{7F5A44C7-37FD-4189-A2CA-9EC81EAB0AD5}'
+		}
+	}
+}

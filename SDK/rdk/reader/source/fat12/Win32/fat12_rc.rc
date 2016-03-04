@@ -1,0 +1,186 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "fat12_rc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#define _TEXT(x) x
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "fat12_rc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#define _TEXT(x) x\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_FAT12               ICON                    "fat12.ico"
+IDI_HDIMAGE             ICON                    "hdimage.ico"
+IDI_DEFAULT             ICON                    "fat12.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_FAT12_INSERT_TEXT   "Вставьте %s дискету в дисковод %s"
+    IDS_FAT12_CARRIER_TYPE  "FAT12"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HDIMAGE_INSERT_TEXT "Проверьте наличие %s директории"
+    IDS_HDIMAGE_CARRIER_TYPE "HDIMAGE"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EHDIMAGE_INSERT_TEXT "Проверьте наличие %s защищённой директории"
+    IDS_EHDIMAGE_CARRIER_TYPE "HSM"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DEFAULT_INSERT_TEXT "Проверьте наличие %s директории"
+    IDS_DEFAULT_CARRIER_TYPE "DEFAULT"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FAT12_NAME          "Дисковод"
+    IDS_FAT12_NICKNAME      "PNP FAT12"
+    IDS_GROUP_NICKNAME      "FAT12"
+    IDS_GROUP_NAME          "Все съемные диски"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HDIMAGE_NAME        "Директория"
+    IDS_HDIMAGE_NICKNAME    "HDIMAGE"
+    IDS_HDIMAGE_DETAIL_NAME "Директория на жестком диске"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EHDIMAGE_NAME        "Защищённая директория"
+    IDS_EHDIMAGE_NICKNAME    "HSM"
+    IDS_EHDIMAGE_DETAIL_NAME "Защищённая директория на жестком диске"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DEFAULT_NAME        "Произвольный считыватель"
+    IDS_DEFAULT_NICKNAME    "DEFAULT"
+    IDS_DEFAULT_DETAIL_NAME "Директория на съемном носителе"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_FAT12_INSERT_TEXT   "Insert %s diskette into drive %s"
+    IDS_FAT12_CARRIER_TYPE  "FAT12"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HDIMAGE_INSERT_TEXT "Check %s directory existance"
+    IDS_HDIMAGE_CARRIER_TYPE "HDIMAGE"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EHDIMAGE_INSERT_TEXT "Check %s encrypted directory existance"
+    IDS_EHDIMAGE_CARRIER_TYPE "HSM"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DEFAULT_INSERT_TEXT "Check if %s is mountable"
+    IDS_DEFAULT_CARRIER_TYPE "DEFAULT"
+END
+
+
+STRINGTABLE 
+BEGIN
+    IDS_FAT12_NAME          "Floppy"
+    IDS_FAT12_NICKNAME      "PNP FAT12"
+    IDS_GROUP_NICKNAME      "FAT12"
+    IDS_GROUP_NAME          "All removable media"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HDIMAGE_NAME        "Directory"
+    IDS_HDIMAGE_NICKNAME    "HDIMAGE"
+    IDS_HDIMAGE_DETAIL_NAME "Hard drive directory"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EHDIMAGE_NAME        "Encrypted directory"
+    IDS_EHDIMAGE_NICKNAME    "HSM"
+    IDS_EHDIMAGE_DETAIL_NAME "Encrypted hard drive directory"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DEFAULT_NAME        "Removable media"
+    IDS_DEFAULT_NICKNAME    "DEFAULT"
+    IDS_DEFAULT_DETAIL_NAME "A removeable drive directory"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////

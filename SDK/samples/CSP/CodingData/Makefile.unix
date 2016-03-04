@@ -1,0 +1,2 @@
+out=CodingData
+include ../../examples.unix.mk

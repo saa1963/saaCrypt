@@ -1,0 +1,2 @@
+out=ExportingCertificate
+include ../../examples.unix.mk

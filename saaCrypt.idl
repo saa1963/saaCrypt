@@ -1,0 +1,62 @@
+// saaCrypt.idl : IDL source for saaCrypt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (saaCrypt.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(A0EB4B35-BEC0-4F6C-900C-93A905881102),
+		dual,
+		helpstring("ICrClass Interface"),
+		pointer_default(unique)
+	]
+	interface ICrClass : IDispatch
+	{
+		[id(1), helpstring("method Init")] HRESULT Init([in] BSTR Container, [in] BSTR Provider, [out,retval] VARIANT_BOOL *retval);
+		[id(2), helpstring("method CreateNewKeys")] HRESULT CreateNewKeys([out,retval] VARIANT_BOOL *retval);
+		[id(3), helpstring("method ExportPublicKey")] HRESULT ExportPublicKey([out,retval] BSTR *retval);
+		[id(4), helpstring("method SignMessage")] HRESULT SignMessage([in] BSTR msg, [out,retval] BSTR *retval);
+		[id(5), helpstring("method VerifyMessage")] HRESULT VerifyMessage([in] BSTR msg, [in] BSTR sign, [in] BSTR key, [out,retval] VARIANT_BOOL *retval);
+		[id(6), helpstring("method CreateNewExchangeKey")] HRESULT CreateNewExchangeKey([out,retval]VARIANT_BOOL *retval);
+		[id(7), helpstring("method ExportExchangeKey")] HRESULT ExportExchangeKey([out,retval]BSTR *retval);
+		[id(8), helpstring("method EncodeMessage")] HRESULT EncodeMessage([in] BSTR msg, [in] BSTR pkey, [out,retval] BSTR *retval);
+		[id(9), helpstring("method DecodeMessage")] HRESULT DecodeMessage([in] BSTR msg, [in] BSTR pkey, [out,retval] BSTR *retval);
+		[id(10), helpstring("method EncodeFile")] HRESULT EncodeFile([in] BSTR fname, BSTR pkey, [out, retval] VARIANT_BOOL *retval);
+		[id(11), helpstring("method DecodeFile")] HRESULT DecodeFile([in] BSTR fname, [in] BSTR pkey, [out,retval] VARIANT_BOOL *retval);
+		[id(12), helpstring("method SaveRegister")] HRESULT SaveRegister([in] BSTR fname);
+		[id(13), helpstring("method Init0")] HRESULT Init0([in] BSTR Container, [in] BSTR Provider, [out, retval] VARIANT_BOOL *retval);
+		[id(14), helpstring("method Init1 GOST 2001")] HRESULT Init1([in] BSTR container, [in] BSTR provider, [out,retval] VARIANT_BOOL* retval);
+		[id(15), helpstring("Инициализирует контекст провайдера для существующего контейнера")] HRESULT InitExistsContainer([in] BSTR container, [out,retval] VARIANT_BOOL* retval);
+		[id(16), helpstring("method CreateNewSymmetricKey")] HRESULT CreateNewSymmetricKey([out,retval]VARIANT_BOOL *retval);
+		//[id(17), helpstring("method EnumContainers")] HRESULT EnumContainers([out,retval]SAFEARRAY(VARIANT) *retval);
+		[id(17)] HRESULT EnumContainers([out,retval] VARIANT* retval);
+		[id(18), helpstring("method EncodeMessageBin")] HRESULT EncodeMessageBin([in] VARIANT msg, [in] VARIANT pkey, [out,retval] VARIANT *retval);
+		[id(19), helpstring("method DecodeMessageBin")] HRESULT DecodeMessageBin([in] VARIANT msg, [in] VARIANT pkey, [out,retval] VARIANT *retval);
+		[id(20), helpstring("method EncodeFile2")] HRESULT EncodeFile2([in] BSTR fname, BSTR pkey, [out, retval] VARIANT_BOOL *retval);
+		[id(21), helpstring("method DecodeFile2")] HRESULT DecodeFile2([in] BSTR fname, [in] BSTR pkey, [out,retval] VARIANT_BOOL *retval);
+		[id(22)] HRESULT SignMessageBin([in] VARIANT msg, [out,retval] VARIANT* sign);
+		[id(23)] HRESULT VerifyMessageBin([in] VARIANT msg, [in] VARIANT sign, [in] VARIANT key, [out,retval] VARIANT_BOOL* retval);
+	};
+
+[
+	uuid(7F5A44C7-37FD-4189-A2CA-9EC81EAB0AD5),
+	version(1.0),
+	helpstring("saaCrypt 1.0 Type Library")
+]
+library SAACRYPTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(1B4F737C-1E35-41BB-846B-D7D8EF17D5C0),
+		helpstring("CrClass Class")
+	]
+	coclass CrClass
+	{
+		[default] interface ICrClass;
+	};
+};

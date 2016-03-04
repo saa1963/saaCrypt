@@ -1,0 +1,7 @@
+#define VER_FILEVERSION_MAJOR		3
+#define VER_FILEVERSION_MINOR		6
+#define VER_FILETYPE			VFT_DLL
+#define VER_FILEDESCRIPTION_STR		"Библиотека поддержки смарт-карт РИК, Оскар и Магистра для CSP/HSM"
+#define VER_FILEDESCRIPTION_STR_EN	"CSP/HSM RIC, Oscar and Magistra smart-cards support library"
+#define VER_INTERNALNAME_STR		"ric"
+#define VER_ORIGINALFILENAME_STR	"ric.dll"

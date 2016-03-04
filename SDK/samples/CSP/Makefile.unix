@@ -1,0 +1,13 @@
+DIRS=    CodingData CreatingHash CreatingKeyContainer \
+    	 CryptAcquireContext CryptMsgSign CryptMessages DecryptFile \
+         DerivingSessionKey DuplicatingHash DuplicatingSessionKey \
+	 EncryptContainer\
+         EncryptFile EnumeratingProviders ExportInFile ExportingCertificate \
+         ExportingSessionKey KeyCopy SessionKeyParameters \
+    	 SigningHash SILENT 
+
+all: 
+	for d in $(DIRS); do ( cd $$d; $(MAKE) -f Makefile.unix ) || fail=yes; done;\
+	test -z "$$fail"
+clean: 
+	for d in $(DIRS); do ( cd $$d; $(MAKE) -f Makefile.unix clean) done

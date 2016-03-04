@@ -1,0 +1,2 @@
+out=DecryptFile
+include ../../examples.unix.mk

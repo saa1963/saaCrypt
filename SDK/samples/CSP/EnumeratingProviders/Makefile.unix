@@ -1,0 +1,2 @@
+out=EnumeratingProviders
+include ../../examples.unix.mk
