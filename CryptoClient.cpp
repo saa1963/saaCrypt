@@ -145,36 +145,6 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR ps
 			return CC_NOACCESS_CONTEXT;
 		}
 	}
-
-	/*
-	// Если контейнера для провайдера нет, то он создается и возвращается контекст
-	if (CryptAcquireContext(
-		&phProv,
-		pszContainer,
-		NULL,
-		prtype,
-		CRYPT_NEWKEYSET
-		))
-		return CC_NOERRORS;
-	nError = GetLastError();
-	// Если контейнер есть, то получаем контекст
-	if (nError == NTE_EXISTS){
-		if (CryptAcquireContext(
-			&phProv,
-			pszContainer,
-			NULL,
-			prtype,
-			0
-			))
-			return CC_NOERRORS;
-		else
-			return CC_NOACCESS_CONTEXT;
-	}
-	if (nError != 0){
-		MyCodeError(er, nError);
-		MessageBox(NULL, er, "", MB_OK);
-	}
-	*/
 	return CC_NOACCESS_CONTEXT;
 }
 
@@ -268,22 +238,9 @@ ECryptoClientErrors CCryptoClient::ImportPublicKey(BYTE *pbData, DWORD dwDataLen
 
 ECryptoClientErrors CCryptoClient::ImportPublicKeyBin(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey)
 {
-	//DWORD dwRealLen = dwDataLen / 2;
-	//BYTE *pbTemp;
-	//char cTemp[5] = {'\0', '\0', '\0', '\0', '\0'};
-
-	//if ((dwRealLen * 2) != dwDataLen)
-	//	return CC_INVALID_PARAMETER;
-	//pbTemp = new BYTE[dwRealLen];
-
-	//FromHex(pbTemp, pbData, dwRealLen);
-
-	// OK! в pbTemp находится BLOB
 	if (!CryptImportKey(phProv, pbData, dwDataLen, 0, 0, phUserKey)){
-		//delete pbTemp;
 		return CC_UNKNOWN_ERROR;
 	}
-	//delete pbTemp;
 	return CC_NOERRORS;
 }
 
@@ -532,10 +489,6 @@ ECryptoClientErrors CCryptoClient::CreateNewSessionKey(HCRYPTKEY *phUserKey)
 	// CALG_G28147 Идентификатор алгоритма шифрования по ГОСТ 28147 89. 
 	if (!CryptGenKey(phProv, CALG_G28147, CRYPT_EXPORTABLE, phUserKey))
 		return CC_NOCREATE_KEYS;
-	//DWORD flags = 0;
-	//flags = flags || CRYPT_ENCRYPT || CRYPT_DECRYPT || CRYPT_EXPORT || CRYPT_READ || CRYPT_WRITE || CRYPT_MAC;
-	//CryptSetKeyParam(*phUserKey, KP_PERMISSIONS, (BYTE*)&flags, 0);
-	//CRYPT_ENCRYPT || CRYPT_DECRYPT || CRYPT_EXPORT || CRYPT_READ || CRYPT_WRITE || CRYPT_MAC
 	return CC_NOERRORS;
 }
 
@@ -1148,36 +1101,25 @@ ECryptoClientErrors CCryptoClient::ImportPublicKeyOnExchangeKey(BYTE *pbData, DW
 }
 
 ECryptoClientErrors CCryptoClient::ImportPublicKeyOnExchangeKeyBin(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey){
-	//DWORD dwRealLen = dwDataLen;//dwDataLen / 2;
-	//BYTE *pbTemp;
 	DWORD nError;
 	char er[2000];
 	HCRYPTKEY hUserKey;
-
-	//if ((dwRealLen * 2) != dwDataLen)
-	//	return CC_INVALID_PARAMETER;
-	//pbTemp = new BYTE[dwRealLen];
-
-	//FromHex(pbTemp, pbData, dwRealLen);
 
 	if (!CryptGetUserKey(phProv, AT_KEYEXCHANGE, &hUserKey)){
 		nError = GetLastError();
 		MyCodeError(er, nError);
 		MessageBox(NULL, "CryptGetUserKey Error 1", "", MB_OK);
 		MessageBox(NULL, er, "", MB_OK);
-		//delete pbTemp;
 		return CC_UNKNOWN_ERROR;
 	}
-	// OK! в pbTemp находится BLOB
+
 	if (!CryptImportKey(phProv, pbData, dwDataLen, hUserKey, 0, phUserKey)){
-		//delete pbTemp;
 		nError = GetLastError();
 		MyCodeError(er, nError);
 		MessageBox(NULL, "CryptImportKey Error 1", "", MB_OK);
 		MessageBox(NULL, er, "", MB_OK);
 		return CC_UNKNOWN_ERROR;
 	}
-	//delete pbTemp;
 	return CC_NOERRORS;
 }
 
@@ -1206,9 +1148,6 @@ char *Number2String(DWORD n){
 
 bool ToFile(char *fname, BYTE *buf, DWORD lenbuf){
 	DWORD nWritten;
-	//if (FileExist(fname))
-	//	if (!DeleteFile(fname))
-	//		return false;
 	HANDLE h = CreateFile(fname, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
 	if (h == INVALID_HANDLE_VALUE){
 		//MessageBox(NULL, "11", "", MB_OK);
@@ -1383,35 +1322,6 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR p
 	nError = GetLastError();
 	MyCodeError(er, nError);
 	MessageBox(NULL, er, "", MB_OK);
-	// Если контейнера для провайдера нет, то он создается и возвращается контекст
-	//if (CryptAcquireContext(
-	//	&phProv,
-	//	pszContainer,
-	//	NULL,
-	//	ProviderType2001,
-	//	CRYPT_NEWKEYSET | CRYPT_MACHINE_KEYSET
-	//	))
-	//	return CC_NOERRORS;
-	//nError = GetLastError();
-	//MyCodeError(er, nError);
-	//MessageBox(NULL, er, "", MB_OK);
-	// Если контейнер есть, то получаем контекст
-	/*if (nError == NTE_EXISTS){
-		if (CryptAcquireContext(
-			&phProv,
-			pszContainer,
-			NULL,
-			ProviderType2001,
-			CRYPT_MACHINE_KEYSET
-			))
-			return CC_NOERRORS;
-		else
-			return CC_NOACCESS_CONTEXT;
-	}
-	if (nError != 0){
-		MyCodeError(er, nError);
-		MessageBox(NULL, er, "", MB_OK);
-	}*/
 	return CC_NOACCESS_CONTEXT;
 }
 

@@ -22,7 +22,6 @@ STDMETHODIMP CCrClass::Init(BSTR Container, BSTR Provider, VARIANT_BOOL *retval)
 		WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)Container, -1, s1, wcslen((wchar_t*)Container) + 1, NULL, NULL);
 	}
 	else{
-		//MessageBox(NULL, "77", "11", MB_OK);
 		s1 = NULL;
 	}
 	char *s2 = new char[wcslen((wchar_t*)Provider) + 1];
@@ -32,7 +31,6 @@ STDMETHODIMP CCrClass::Init(BSTR Container, BSTR Provider, VARIANT_BOOL *retval)
 		*retval = VARIANT_TRUE;
 	else{
 		*retval = VARIANT_FALSE;
-		//delete m_cclient;
 	}
 	if (Container != NULL)
 		delete s1;
