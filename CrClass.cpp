@@ -16,25 +16,12 @@ STDMETHODIMP CCrClass::Init(BSTR Container, BSTR Provider, VARIANT_BOOL *retval)
 {
 	// TODO: Add your implementation code here
 
-	char *s1;
-	if (Container != NULL){
-		s1 = new char[wcslen((wchar_t*)Container) + 1];
-		WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)Container, -1, s1, wcslen((wchar_t*)Container) + 1, NULL, NULL);
-	}
-	else{
-		s1 = NULL;
-	}
-	char *s2 = new char[wcslen((wchar_t*)Provider) + 1];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)Provider, -1, s2, wcslen((wchar_t*)Provider) + 1, NULL, NULL);
-	m_cclient = new CCryptoClient(s1, s2);
+	m_cclient = new CCryptoClient(Container, Provider);
 	if (m_cclient->nError == CC_NOERRORS)
 		*retval = VARIANT_TRUE;
 	else{
 		*retval = VARIANT_FALSE;
 	}
-	if (Container != NULL)
-		delete s1;
-	delete s2;
 	return S_OK;
 }
 
@@ -59,7 +46,7 @@ STDMETHODIMP CCrClass::ExportPublicKey(BSTR *retval)
 		*retval = SysAllocString((OLECHAR*)"");
 		goto done;
 	}
-	pbData = new BYTE[dwDataLen + 1];
+	pbData = new BYTE[dwDataLen + 2];
 	if (m_cclient->ExportSignPublicKey(pbData, &dwDataLen) != CC_NOERRORS){
 		*retval = SysAllocString((OLECHAR*)"");
 		delete pbData;
@@ -595,27 +582,12 @@ STDMETHODIMP CCrClass::Init0(BSTR Container, BSTR Provider, VARIANT_BOOL *retval
 {
 	// TODO: Add your implementation code here
 
-	char *s1;
-	if (Container != NULL){
-		s1 = new char[wcslen((wchar_t*)Container) + 1];
-		WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)Container, -1, s1, wcslen((wchar_t*)Container) + 1, NULL, NULL);
-	}
-	else{
-		//MessageBox(NULL, "77", "11", MB_OK);
-		s1 = NULL;
-	}
-	char *s2 = new char[wcslen((wchar_t*)Provider) + 1];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)Provider, -1, s2, wcslen((wchar_t*)Provider) + 1, NULL, NULL);
-	m_cclient = new CCryptoClient(s1, s2, TRUE);
+	m_cclient = new CCryptoClient(Container, Provider, TRUE);
 	if (m_cclient->nError == CC_NOERRORS)
 		*retval = VARIANT_TRUE;
 	else{
 		*retval = VARIANT_FALSE;
-		//delete m_cclient;
 	}
-	if (Container != NULL)
-		delete s1;
-	delete s2;
 	return S_OK;
 }
 
@@ -623,28 +595,12 @@ STDMETHODIMP CCrClass::Init1(BSTR container, BSTR provider, VARIANT_BOOL* retval
 {
 	// TODO: Add your implementation code here
 
-	char *s1;
-	if (container != NULL){
-		s1 = new char[wcslen((wchar_t*)container) + 1];
-		WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)container, -1, s1, wcslen((wchar_t*)container) + 1, NULL, NULL);
-	}
-	else{
-		//MessageBox(NULL, "77", "11", MB_OK);
-		s1 = NULL;
-	}
-	char *s2 = new char[wcslen((wchar_t*)provider) + 1];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)provider, -1, s2, wcslen((wchar_t*)provider) + 1, NULL, NULL);
-	m_cclient = new CCryptoClient(s1, s2, TRUE);
+	m_cclient = new CCryptoClient(container, provider, TRUE);
 	if (m_cclient->nError == CC_NOERRORS)
 		*retval = VARIANT_TRUE;
 	else{
 		*retval = VARIANT_FALSE;
-		//delete m_cclient;
 	}
-	if (container != NULL)
-		delete s1;
-	delete s2;
-
 	return S_OK;
 }
 
@@ -652,35 +608,14 @@ STDMETHODIMP CCrClass::InitExistsContainer(BSTR container, VARIANT_BOOL* retval)
 {
 	// TODO: Add your implementation code here
 
-	char *s1;
-	if (container != NULL){
-		s1 = new char[wcslen((wchar_t*)container) + 1];
-		WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)container, -1, s1, wcslen((wchar_t*)container) + 1, NULL, NULL);
-	}
-	else{
-		//MessageBox(NULL, "77", "11", MB_OK);
-		s1 = NULL;
-	}
-	m_cclient = new CCryptoClient(s1, 0);
+	m_cclient = new CCryptoClient(container, 0);
 	if (m_cclient->nError == CC_NOERRORS)
 		*retval = VARIANT_TRUE;
 	else{
 		*retval = VARIANT_FALSE;
-		//delete m_cclient;
 	}
-	if (container != NULL)
-		delete s1;
-
 	return S_OK;
 }
-
-//STDMETHODIMP CCrClass::EnumContainers(SAFEARRAY *retval)
-//{
-//	// TODO: Add your implementation code here
-//	retval = SafeArrayCreateVector(VT_BSTR, 0, 5);
-//	LONG ind[1] = {0};
-//	return S_OK;
-//}
 
 #pragma warning(disable : 4996)
 STDMETHODIMP CCrClass::EnumContainers(VARIANT* retval)

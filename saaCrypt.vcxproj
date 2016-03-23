@@ -30,6 +30,7 @@
     <ProjectGuid>{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}</ProjectGuid>
     <RootNamespace>saaCrypt</RootNamespace>
     <Keyword>AtlProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'" Label="Configuration">

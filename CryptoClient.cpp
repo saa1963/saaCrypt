@@ -45,16 +45,16 @@ const DWORD ProviderType2001 = PROV_GOST_2001_DH;	// ГОСТ Р 34.10-2001
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CCryptoClient::CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider)
+CCryptoClient::CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider)
 {
 	if (pszContainer != NULL){
-		container = new char[strlen(pszContainer) + 1];
-		strcpy(container, pszContainer);
+		container = new wchar_t[wcslen(pszContainer) + 1];
+		wcscpy(container, pszContainer);
 	}
 	else
 		container = NULL;
 	DWORD prtype;
-	if (_tcsstr(pszProvider, "2001"))
+	if (wcsstr(pszProvider, L"2001"))
 	{
 		prtype = ProviderType2001;
 	}
@@ -65,16 +65,16 @@ CCryptoClient::CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider)
 	nError = GetHandleCSP(pszContainer, pszProvider);
 }
 
-CCryptoClient::CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider, BOOL flag)
+CCryptoClient::CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider, BOOL flag)
 {
 	if (pszContainer != NULL){
-		container = new char[strlen(pszContainer) + 1];
-		strcpy(container, pszContainer);
+		container = new wchar_t[wcslen(pszContainer) + 1];
+		wcscpy(container, pszContainer);
 	}
 	else
 		container = NULL;
 	DWORD prtype;
-	if (_tcsstr(pszProvider, "2001"))
+	if (wcsstr(pszProvider, L"2001"))
 	{
 		prtype = ProviderType2001;
 	}
@@ -92,12 +92,12 @@ CCryptoClient::~CCryptoClient()
 	CryptReleaseContext(phProv, 0);
 }
 
-ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR pszProvider)
+ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCWSTR pszContainer, LPCWSTR pszProvider)
 {
 	char er[2000];
 	int nError;
 	DWORD prtype;
-	if (_tcsstr(pszProvider, "2001"))
+	if (wcsstr(pszProvider, L"2001"))
 	{
 		prtype = ProviderType2001;
 	}
@@ -109,7 +109,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR ps
 	// ключами и dwFlags должен быть установлен в CRYPT_VERIFYCONTEXT
 	// Применяется для проверки подписи
 	if (pszContainer == NULL){
-		if (CryptAcquireContext(
+		if (CryptAcquireContextW(
 			&phProv,
 			NULL,
 			NULL,
@@ -122,7 +122,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR ps
 	}
 
 
-	if (CryptAcquireContext(
+	if (CryptAcquireContextW(
 			&phProv,
 			pszContainer,
 			NULL,
@@ -132,7 +132,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR ps
 		return CC_NOERRORS;
 	else
 	{
-		if (CryptAcquireContext(
+		if (CryptAcquireContextW(
 		&phProv,
 		pszContainer,
 		NULL,
@@ -148,11 +148,11 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP(LPCTSTR pszContainer, LPCTSTR ps
 	return CC_NOACCESS_CONTEXT;
 }
 
-ECryptoClientErrors CCryptoClient::GetHandleCSP0(LPCTSTR pszContainer, LPCTSTR pszProvider)
+ECryptoClientErrors CCryptoClient::GetHandleCSP0(LPCWSTR pszContainer, LPCWSTR pszProvider)
 {
 	char er[2000];
 	DWORD prtype;
-	if (_tcsstr(pszProvider, "2001"))
+	if (wcsstr(pszProvider, L"2001"))
 	{
 		prtype = ProviderType2001;
 	}
@@ -160,7 +160,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP0(LPCTSTR pszContainer, LPCTSTR p
 	{
 		prtype = ProviderType;
 	}
-	if (CryptAcquireContext(
+	if (CryptAcquireContextW(
 		&phProv,
 		pszContainer,
 		NULL,
@@ -1130,6 +1130,14 @@ void ToHex(BYTE *dest, BYTE *src, DWORD ln){
 	}
 }
 
+void ToHex1(BYTE *dest, BYTE *src, DWORD ln) {
+	char *d = (char*)dest;
+	for (DWORD i = 0; i < ln; i++) {
+		sprintf(d, "%02X", src[i]);
+		d += 2;
+	}
+}
+
 void FromHex(BYTE *dest, BYTE *src, DWORD ln){
 	char cTemp[5];
 	for (DWORD i = 0; i < ln; i++){
@@ -1206,8 +1214,8 @@ bool CCryptoClient::SaveRegister(char *fname)
 	LONG rc;
 	HKEY hKeyToSave;
 	DWORD dwDisposition;
-	char *subkey0 = "SOFTWARE\\Crypto Pro\\Settings\\KeyDevices\\passwords\\";
-	char *subkey;
+	wchar_t *subkey0 = L"SOFTWARE\\Crypto Pro\\Settings\\KeyDevices\\passwords\\";
+	wchar_t *subkey;
 
 	// 
     // enable backup privilege
@@ -1241,10 +1249,10 @@ bool CCryptoClient::SaveRegister(char *fname)
     }
 
 
-	subkey = new char[strlen(subkey0) + strlen(container) + 1];
-	strcpy(subkey, subkey0);
-	strcat(subkey, container);
-	rc=RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+	subkey = new wchar_t[wcslen(subkey0) + wcslen(container) + 1];
+	wcscpy(subkey, subkey0);
+	wcscat(subkey, container);
+	rc=RegCreateKeyExW(HKEY_LOCAL_MACHINE,
                           subkey, // Name of subkey to open
                           0,
                           NULL,
@@ -1273,25 +1281,25 @@ bool CCryptoClient::SaveRegister(char *fname)
 	return true;
 }
 
-CCryptoClient::CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider, bool Is2001)
+CCryptoClient::CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider, bool Is2001)
 {
 	if (pszContainer != NULL){
-		container = new char[strlen(pszContainer) + 1];
-		strcpy(container, pszContainer);
+		container = new wchar_t[wcslen(pszContainer) + 1];
+		wcscpy(container, pszContainer);
 	}
 	else
 		container = NULL;
 	//nError = GetHandleCSP(pszContainer, pszProvider);
-	LPTSTR ProvName;
+	LPWSTR ProvName;
 	DWORD cbProvName;
-	CryptGetDefaultProvider(ProviderType2001, NULL, CRYPT_MACHINE_DEFAULT, NULL, &cbProvName);
-	ProvName = new TCHAR[cbProvName];
-	CryptGetDefaultProvider(ProviderType2001, NULL, CRYPT_MACHINE_DEFAULT, ProvName, &cbProvName);
+	CryptGetDefaultProviderW(ProviderType2001, NULL, CRYPT_MACHINE_DEFAULT, NULL, &cbProvName);
+	ProvName = new wchar_t[cbProvName];
+	CryptGetDefaultProviderW(ProviderType2001, NULL, CRYPT_MACHINE_DEFAULT, ProvName, &cbProvName);
 	nError = GetHandleCSP1(pszContainer, ProvName);
 	delete ProvName;
 }
 
-ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR pszProvider)
+ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCWSTR pszContainer, LPCWSTR pszProvider)
 {
 	char er[2000];
 	int nError;
@@ -1299,7 +1307,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR p
 	// ключами и dwFlags должен быть установлен в CRYPT_VERIFYCONTEXT
 	// Применяется для проверки подписи
 	if (pszContainer == NULL){
-		if (CryptAcquireContext(
+		if (CryptAcquireContextW(
 			&phProv,
 			NULL,
 			NULL,
@@ -1311,7 +1319,7 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR p
 			return CC_NOACCESS_CONTEXT;
 	}
 
-	if (CryptAcquireContext(
+	if (CryptAcquireContextW(
 			&phProv,
 			pszContainer,
 			NULL,
@@ -1325,14 +1333,14 @@ ECryptoClientErrors CCryptoClient::GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR p
 	return CC_NOACCESS_CONTEXT;
 }
 
-CCryptoClient::CCryptoClient(LPCTSTR pszContainer, int vid)
+CCryptoClient::CCryptoClient(LPCWSTR pszContainer, int vid)
 {
 	nError = GetHandleCSP2(pszContainer);
 }
 
-ECryptoClientErrors CCryptoClient::GetHandleCSP2(LPCTSTR pszContainer)
+ECryptoClientErrors CCryptoClient::GetHandleCSP2(LPCWSTR pszContainer)
 {
-	if (CryptAcquireContext(
+	if (CryptAcquireContextW(
 			&phProv,
 			pszContainer,
 			NULL,

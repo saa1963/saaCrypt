@@ -55,25 +55,25 @@ public:
 	ECryptoClientErrors CreateNewKeys(ECryptoKeyTypes kt);
 	ECryptoClientErrors nError;
 	// Конструктор для использования алгоритма 2001
-	CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider);
-	CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider, BOOL flag);
+	CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider);
+	CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider, BOOL flag);
 	virtual ~CCryptoClient();
 protected:
 	ECryptoClientErrors ImportPublicKey(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey);
 	ECryptoClientErrors ImportPublicKeyBin(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey);
 	ECryptoClientErrors ImportPublicKeyOnExchangeKey(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey);
 	ECryptoClientErrors ImportPublicKeyOnExchangeKeyBin(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey);
-	ECryptoClientErrors GetHandleCSP(LPCTSTR pszContainer, LPCTSTR pszProvider);
-	ECryptoClientErrors GetHandleCSP0(LPCTSTR pszContainer, LPCTSTR pszProvider);
-	ECryptoClientErrors GetHandleCSP1(LPCTSTR pszContainer, LPCTSTR pszProvider);
-	ECryptoClientErrors GetHandleCSP2(LPCTSTR pszContainer);
+	ECryptoClientErrors GetHandleCSP(LPCWSTR pszContainer, LPCWSTR pszProvider);
+	ECryptoClientErrors GetHandleCSP0(LPCWSTR pszContainer, LPCWSTR pszProvider);
+	ECryptoClientErrors GetHandleCSP1(LPCWSTR pszContainer, LPCWSTR pszProvider);
+	ECryptoClientErrors GetHandleCSP2(LPCWSTR pszContainer);
 	HCRYPTPROV phProv;
-	char *container;
+	wchar_t *container;
 private:
 	ECryptoClientErrors _ExportPublicKey(BYTE *pbData, DWORD *pdwDataLen, DWORD dwKeySpec);
 public:
-	CCryptoClient(LPCTSTR pszContainer, LPCTSTR pszProvider, bool Is2001);
-	CCryptoClient(LPCTSTR pszContainer, int vid);
+	CCryptoClient(LPCWSTR pszContainer, LPCWSTR pszProvider, bool Is2001);
+	CCryptoClient(LPCWSTR pszContainer, int vid);
 	ECryptoClientErrors EnumContainers(vector<string>& containers);
 	ECryptoClientErrors SignMessageBin(BYTE *msg, DWORD dwLenMsg, BYTE *sign, DWORD *pdwSignLen);
 	ECryptoClientErrors VerifyMessageBin(BYTE *msg, DWORD dwLenMsg, BYTE *sign, DWORD dwSignLen, BYTE *key, DWORD dwKeyLen);
