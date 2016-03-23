@@ -505,14 +505,14 @@ ECryptoClientErrors CCryptoClient::_ExportPublicKey(BYTE *pbData, DWORD *pdwData
 		return CC_UNKNOWN_ERROR;
 	// размер буфера определен
 	if (!pbData){
-		*pdwDataLen = dwTemp * 2;
+		*pdwDataLen = dwTemp * 4;
 		return CC_NOERRORS;
 	}
 	pbTemp = new BYTE[dwTemp];	
 	if (!CryptExportKey(phUserKey, 0, PUBLICKEYBLOB, 0, pbTemp, &dwTemp))
 		return CC_UNKNOWN_ERROR;
 
-	ToHex(pbData, pbTemp, dwTemp);
+	ToHex1(pbData, pbTemp, dwTemp);
 
 	delete pbTemp;
 	return CC_NOERRORS;
@@ -1131,10 +1131,10 @@ void ToHex(BYTE *dest, BYTE *src, DWORD ln){
 }
 
 void ToHex1(BYTE *dest, BYTE *src, DWORD ln) {
-	char *d = (char*)dest;
+	wchar_t *d = (wchar_t*)dest;
 	for (DWORD i = 0; i < ln; i++) {
-		sprintf(d, "%02X", src[i]);
-		d += 2;
+		swprintf(d, ln * 4 + 2, L"%02X", src[i]);
+		d += 4;
 	}
 }
 

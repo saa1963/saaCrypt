@@ -32,6 +32,7 @@ enum ECryptoKeyTypes{
 };
 
 void ToHex(BYTE *dest, BYTE *src, DWORD ln);
+void ToHex1(BYTE *dest, BYTE *src, DWORD ln);
 void FromHex(BYTE *dest, BYTE *src, DWORD ln);
 void MyCodeError(char *er, DWORD nError);
 char *Number2String(DWORD n);

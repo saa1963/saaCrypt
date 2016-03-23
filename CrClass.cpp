@@ -39,7 +39,7 @@ STDMETHODIMP CCrClass::ExportPublicKey(BSTR *retval)
 {
 	// TODO: Add your implementation code here
 
-	wchar_t *wch;
+	//wchar_t *wch;
 	BYTE *pbData;
 	DWORD dwDataLen;
 	if (m_cclient->ExportSignPublicKey(NULL, &dwDataLen) != CC_NOERRORS){
@@ -52,12 +52,8 @@ STDMETHODIMP CCrClass::ExportPublicKey(BSTR *retval)
 		delete pbData;
 		goto done;
 	}
-	pbData[dwDataLen] = 0;
-	wch = new wchar_t[dwDataLen + 1];
-	MultiByteToWideChar(CP_ACP, 0, (char*)pbData, -1, wch, dwDataLen + 1);
+	*retval = SysAllocString((wchar_t*)pbData);
 	delete pbData;
-	*retval = SysAllocString(wch);
-	delete wch;
 done:
 	return S_OK;
 }
