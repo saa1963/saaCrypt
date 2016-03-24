@@ -213,3 +213,13 @@ ModelManifest.xml
 
 #saa
 *.VC.opendb
+/ReleaseMinDependency/regsvr32.trg
+/ReleaseMinDependency/saaCrypt.dll
+/ReleaseMinDependency/saaCrypt.exp
+/ReleaseMinDependency/saaCrypt.lib
+/ReleaseMinDependency/saaCrypt.res
+/ReleaseMinDependency/saaCrypt.tlog/CL.command.1.tlog
+/ReleaseMinDependency/saaCrypt.tlog/CL.read.1.tlog
+/ReleaseMinDependency/saaCrypt.tlog/CL.write.1.tlog
+/ReleaseMinDependency/saaCrypt.tlog
+/saaCrypt.h
