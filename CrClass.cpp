@@ -39,7 +39,6 @@ STDMETHODIMP CCrClass::ExportPublicKey(BSTR *retval)
 {
 	// TODO: Add your implementation code here
 
-	//wchar_t *wch;
 	BYTE *pbData;
 	DWORD dwDataLen;
 	if (m_cclient->ExportSignPublicKey(NULL, &dwDataLen) != CC_NOERRORS){
@@ -58,80 +57,37 @@ done:
 	return S_OK;
 }
 
-STDMETHODIMP CCrClass::SignMessage(BSTR msg, BSTR *retval)
+STDMETHODIMP CCrClass::ExportExchangeKey(BSTR *retval)
 {
 	// TODO: Add your implementation code here
-	int ner;
-	char *s;
-	DWORD dwSignLen;
-	BYTE *pbSign;
-	wchar_t *wch;
-	int lmsg = SysStringLen(msg);
-	s = new char[lmsg];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)msg, lmsg, s, lmsg, NULL, NULL);
-	ner = m_cclient->SignMessage((BYTE*)s, lmsg, NULL, &dwSignLen);
-	if (ner != CC_NOERRORS){
+
+	BYTE *pbData;
+	DWORD dwDataLen;
+	if (m_cclient->ExportExchangePublicKey(NULL, &dwDataLen) != CC_NOERRORS) {
 		*retval = SysAllocString((OLECHAR*)"");
-		delete s;
 		goto done;
 	}
-	pbSign = new BYTE[dwSignLen + 1];
-	ner = m_cclient->SignMessage((BYTE*)s, lmsg, pbSign, &dwSignLen);
-	if (ner != CC_NOERRORS){
+
+	pbData = new BYTE[dwDataLen + 2];
+	if (m_cclient->ExportExchangePublicKey(pbData, &dwDataLen) != CC_NOERRORS) {
 		*retval = SysAllocString((OLECHAR*)"");
-		delete s;
-		delete pbSign;
+		delete pbData;
 		goto done;
 	}
-	delete s;
-	pbSign[dwSignLen] = 0;
-	wch = new wchar_t[dwSignLen + 1];
-	MultiByteToWideChar(CP_ACP, 0, (char*)pbSign, -1, wch, dwSignLen + 1);
-	delete pbSign;
-	*retval = SysAllocString(wch);
-	delete wch;
+	*retval = SysAllocString((wchar_t*)pbData);
+	delete pbData;
 done:
-	/*char er[500];
-	if (ner != CC_NOERRORS)
-	{
-		MyCodeError(er, ner);
-		::MessageBox(NULL, er, "", MB_OK);
-	}*/
 	return S_OK;
+}
+
+STDMETHODIMP CCrClass::SignMessage(BSTR msg, BSTR *retval)
+{
+	return E_NOTIMPL;
 }
 
 STDMETHODIMP CCrClass::VerifyMessage(BSTR msg, BSTR sign, BSTR key, VARIANT_BOOL *retval)
 {
-	// TODO: Add your implementation code here
-	
-	char *_msg;
-	int lmsg = SysStringLen(msg);
-	char *_sign;
-	int lsign = SysStringLen(sign);
-	char *_key;
-	int lkey = SysStringLen(key);
-	ECryptoClientErrors e;
-	
-	
-	_msg = new char[lmsg];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)msg, lmsg, _msg, lmsg, NULL, NULL);
-	
-	// ?????????????????????
-	_sign = new char[lsign];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)sign, lsign, _sign, lsign, NULL, NULL);
-	
-	_key = new char[lkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)key, lkey, _key, lkey, NULL, NULL);
-
-	e = m_cclient->VerifyMessage((BYTE*)_msg, wcslen((wchar_t*)msg), 
-		(BYTE*)_sign, wcslen((wchar_t*)sign), (BYTE*)_key, wcslen((wchar_t*)key));
-	*retval = VARIANT_FALSE;
-	if (e == CC_NOERRORS)
-		*retval = VARIANT_TRUE;
-	delete _msg;
-	delete _sign;
-	delete _key;
-	return S_OK;
+	return E_NOTIMPL;
 }
 
 STDMETHODIMP CCrClass::CreateNewExchangeKey(VARIANT_BOOL *retval)
@@ -154,102 +110,16 @@ STDMETHODIMP CCrClass::CreateNewSymmetricKey(VARIANT_BOOL *retval)
 	return S_OK;
 }
 
-STDMETHODIMP CCrClass::ExportExchangeKey(BSTR *retval)
-{
-	// TODO: Add your implementation code here
 
-	wchar_t *wch;
-	BYTE *pbData;
-	DWORD dwDataLen;
-	if (m_cclient->ExportExchangePublicKey(NULL, &dwDataLen) != CC_NOERRORS){
-		*retval = SysAllocString((OLECHAR*)"");
-		goto done;
-	}
-
-	pbData = new BYTE[dwDataLen + 1];
-	if (m_cclient->ExportExchangePublicKey(pbData, &dwDataLen) != CC_NOERRORS){
-		*retval = SysAllocString((OLECHAR*)"");
-		delete pbData;
-		goto done;
-	}
-	pbData[dwDataLen] = 0;
-	wch = new wchar_t[dwDataLen + 1];
-	MultiByteToWideChar(CP_ACP, 0, (char*)pbData, -1, wch, dwDataLen + 1);
-	delete pbData;
-	*retval = SysAllocString(wch);
-	delete wch;
-done:
-	return S_OK;
-}
 
 STDMETHODIMP CCrClass::EncodeMessage(BSTR msg, BSTR pkey, BSTR *retval)
 {
-	// TODO: Add your implementation code here
-	char *_msg;
-	char *_pkey;
-	BYTE *msg1 = NULL;
-	DWORD dwLenMsg;
-	DWORD dwLenPkey;
-	DWORD dwLenMsg1;
-	wchar_t *wch;
-	ECryptoClientErrors e;
-	dwLenMsg = wcslen((wchar_t*)msg) + 1;
-	_msg = new char[dwLenMsg];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)msg, -1, _msg, dwLenMsg, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenMsg--;
-	dwLenPkey--;
-	e = m_cclient->CipherMessage((BYTE*)_msg, &dwLenMsg, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
-	if (e != CC_NOERRORS){
-		*retval = SysAllocString((OLECHAR*)"");
-		goto done;
-	}
-	wch = new wchar_t[dwLenMsg1];
-	MultiByteToWideChar(CP_ACP, 0, (char*)msg1, -1, wch, dwLenMsg1);
-	*retval = SysAllocString(wch);
-	delete msg1;
-	delete wch;
-done:
-	delete _msg;
-	delete _pkey;
-	return S_OK;
+	return E_NOTIMPL;
 }
 
 STDMETHODIMP CCrClass::DecodeMessage(BSTR msg, BSTR pkey, BSTR *retval)
 {
-	// TODO: Add your implementation code here
-	char *_msg;
-	char *_pkey;
-	BYTE *msg1 = NULL;
-	DWORD dwLenMsg;
-	DWORD dwLenPkey;
-	DWORD dwLenMsg1;
-	wchar_t *wch;
-	ECryptoClientErrors e;
-	dwLenMsg = wcslen((wchar_t*)msg) + 1;
-	_msg = new char[dwLenMsg];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)msg, -1, _msg, dwLenMsg, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenMsg--;
-	dwLenPkey--;
-	e = m_cclient->DeCipherMessage((BYTE*)_msg, &dwLenMsg, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
-	if (e != CC_NOERRORS){
-		*retval = SysAllocString((OLECHAR*)"");
-		goto done;
-	}
-	wch = new wchar_t[dwLenMsg1];
-	MultiByteToWideChar(CP_ACP, 0, (char*)msg1, -1, wch, dwLenMsg1);
-	*retval = SysAllocString(wch);
-	delete msg1;
-	delete wch;
-done:
-	delete _msg;
-	delete _pkey;
-	return S_OK;	
+	return E_NOTIMPL;
 }
 
 STDMETHODIMP CCrClass::EncodeMessageBin(VARIANT msg, VARIANT pkey, VARIANT *retval)
@@ -345,153 +215,47 @@ done:
 
 STDMETHODIMP CCrClass::EncodeFile(BSTR fname, BSTR pkey, VARIANT_BOOL *retval)
 {
-	// TODO: Add your implementation code here
-	char *_fname;
-	char *_pkey;
-	DWORD dwLenFname;
-	DWORD dwLenPkey;
-	BYTE *msg1 = NULL;
-	DWORD dwLenMsg1;
-	BYTE *buf;
-
-	ECryptoClientErrors e;
-	dwLenFname = wcslen((wchar_t*)fname) + 1;
-	_fname = new char[dwLenFname];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)fname, -1, _fname, dwLenFname, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenFname--;
-	dwLenPkey--;
-	
-	DWORD dwLn = 0;
-	if (!FromFile(_fname, NULL, &dwLn)){
-		
-		*retval = VARIANT_FALSE;
-		goto done;
-	}
-	buf = new BYTE[dwLn];
-	if (!FromFile(_fname, buf, &dwLn)){
-		
-		*retval = VARIANT_FALSE;
-		goto done0;
-	}
-	e = m_cclient->CipherMessage((BYTE*)buf, &dwLn, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
-	if (e != CC_NOERRORS){
-		
-		*retval = VARIANT_FALSE;
-		goto done0;
-	}
-	if (!ToFile(_fname, msg1, dwLenMsg1 - 1)){
-		
-		*retval = VARIANT_FALSE;
-		goto done00;
-	}
-	*retval = VARIANT_TRUE;;
-done00:
-	delete msg1;
-done0:
-	delete buf;
-done:
-	delete _fname;
-	delete _pkey;
-	return S_OK;	
+	return E_NOTIMPL;	
 }
 
 STDMETHODIMP CCrClass::DecodeFile(BSTR fname, BSTR pkey, VARIANT_BOOL *retval)
 {
-	// TODO: Add your implementation code here
-
-	char *_fname;
-	char *_pkey;
-	DWORD dwLenFname;
-	DWORD dwLenPkey;
-	BYTE *msg1 = NULL;
-	DWORD dwLenMsg1;
-	BYTE *buf;
-
-	ECryptoClientErrors e;
-	dwLenFname = wcslen((wchar_t*)fname) + 1;
-	_fname = new char[dwLenFname];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)fname, -1, _fname, dwLenFname, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenFname--;
-	dwLenPkey--;
-	
-	DWORD dwLn = 0;
-	if (!FromFile(_fname, NULL, &dwLn)){
-		*retval = VARIANT_FALSE;
-		goto done;
-	}
-	buf = new BYTE[dwLn];
-	if (!FromFile(_fname, buf, &dwLn)){
-		*retval = VARIANT_FALSE;
-		goto done0;
-	}
-
-	e = m_cclient->DeCipherMessage((BYTE*)buf, &dwLn, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
-	if (e != CC_NOERRORS){
-		*retval = VARIANT_FALSE;
-		goto done0;
-	}
-
-	if (!ToFile(_fname, msg1, dwLenMsg1 - 1)){
-		*retval = VARIANT_FALSE;
-		goto done00;
-	}
-	*retval = VARIANT_TRUE;;
-done00:
-	delete msg1;
-done0:
-	delete buf;
-done:
-	delete _fname;
-	delete _pkey;
-	return S_OK;	
+	return E_NOTIMPL;	
 }
 
 STDMETHODIMP CCrClass::EncodeFile2(BSTR fname, BSTR pkey, VARIANT_BOOL *retval)
 {
 	// TODO: Add your implementation code here
-	char *_fname;
-	char *_pkey;
-	DWORD dwLenFname;
-	DWORD dwLenPkey;
 	BYTE *msg1 = NULL;
 	DWORD dwLenMsg1;
 	BYTE *buf;
 
 	ECryptoClientErrors e;
-	dwLenFname = wcslen((wchar_t*)fname) + 1;
-	_fname = new char[dwLenFname];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)fname, -1, _fname, dwLenFname, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenFname--;
-	dwLenPkey--;
 	
 	DWORD dwLn = 0;
-	if (!FromFile(_fname, NULL, &dwLn)){
+	if (!FromFile(fname, NULL, &dwLn)){
 		
 		*retval = VARIANT_FALSE;
 		goto done;
 	}
 	buf = new BYTE[dwLn];
-	if (!FromFile(_fname, buf, &dwLn)){
+	if (!FromFile(fname, buf, &dwLn)){
 		
 		*retval = VARIANT_FALSE;
 		goto done0;
 	}
-	e = m_cclient->CipherMessageBin((BYTE*)buf, dwLn, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
+	BYTE *_pkey = NULL;
+	DWORD dwLenPKey = lstrlenW(pkey) / 2;
+	_pkey = new BYTE[dwLenPKey];
+	FromHex1(_pkey, pkey, dwLenPKey);
+	e = m_cclient->CipherMessageBin((BYTE*)buf, dwLn, (BYTE*)_pkey, dwLenPKey, &msg1, &dwLenMsg1);
+	delete _pkey;
 	if (e != CC_NOERRORS){
 		
 		*retval = VARIANT_FALSE;
 		goto done0;
 	}
-	if (!ToFile(_fname, msg1, dwLenMsg1 - 1)){
+	if (!ToFile(fname, msg1, dwLenMsg1 - 1)){
 		
 		*retval = VARIANT_FALSE;
 		goto done00;
@@ -502,8 +266,6 @@ done00:
 done0:
 	delete buf;
 done:
-	delete _fname;
-	delete _pkey;
 	return S_OK;	
 }
 
@@ -511,42 +273,33 @@ STDMETHODIMP CCrClass::DecodeFile2(BSTR fname, BSTR pkey, VARIANT_BOOL *retval)
 {
 	// TODO: Add your implementation code here
 
-	char *_fname;
-	char *_pkey;
-	DWORD dwLenFname;
-	DWORD dwLenPkey;
 	BYTE *msg1 = NULL;
 	DWORD dwLenMsg1;
 	BYTE *buf;
 
 	ECryptoClientErrors e;
-	dwLenFname = wcslen((wchar_t*)fname) + 1;
-	_fname = new char[dwLenFname];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)fname, -1, _fname, dwLenFname, NULL, NULL);
-	dwLenPkey = wcslen((wchar_t*)pkey) + 1;
-	_pkey = new char[dwLenPkey];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)pkey, -1, _pkey, dwLenPkey, NULL, NULL);
-	dwLenFname--;
-	dwLenPkey--;
-	
 	DWORD dwLn = 0;
-	if (!FromFile(_fname, NULL, &dwLn)){
+	if (!FromFile(fname, NULL, &dwLn)){
 		*retval = VARIANT_FALSE;
 		goto done;
 	}
 	buf = new BYTE[dwLn];
-	if (!FromFile(_fname, buf, &dwLn)){
+	if (!FromFile(fname, buf, &dwLn)){
 		*retval = VARIANT_FALSE;
 		goto done0;
 	}
-
-	e = m_cclient->DeCipherMessageBin((BYTE*)buf, dwLn, (BYTE*)_pkey, dwLenPkey, &msg1, &dwLenMsg1);
+	BYTE *_pkey = NULL;
+	DWORD dwLenPKey = lstrlenW(pkey) / 2;
+	_pkey = new BYTE[dwLenPKey];
+	FromHex1(_pkey, pkey, dwLenPKey);
+	e = m_cclient->DeCipherMessageBin((BYTE*)buf, dwLn, (BYTE*)_pkey, dwLenPKey, &msg1, &dwLenMsg1);
+	delete _pkey;
 	if (e != CC_NOERRORS){
 		*retval = VARIANT_FALSE;
 		goto done0;
 	}
 
-	if (!ToFile(_fname, msg1, dwLenMsg1 - 1)){
+	if (!ToFile(fname, msg1, dwLenMsg1 - 1)){
 		*retval = VARIANT_FALSE;
 		goto done00;
 	}
@@ -556,21 +309,13 @@ done00:
 done0:
 	delete buf;
 done:
-	delete _fname;
-	delete _pkey;
 	return S_OK;	
 }
 
 STDMETHODIMP CCrClass::SaveRegister(BSTR fname)
 {
 	// TODO: Add your implementation code here
-	DWORD dwLenFname;
-	char *_fname;
-	dwLenFname = wcslen((wchar_t*)fname) + 1;
-	_fname = new char[dwLenFname];
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)fname, -1, _fname, dwLenFname, NULL, NULL);
-	m_cclient->SaveRegister(_fname);
-	delete _fname;
+	m_cclient->SaveRegister(fname);
 	return S_OK;
 }
 

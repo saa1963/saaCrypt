@@ -217,23 +217,7 @@ ECryptoClientErrors CCryptoClient::ExportExchangePublicKey(BYTE *pbData, DWORD *
 
 ECryptoClientErrors CCryptoClient::ImportPublicKey(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey)
 {
-	DWORD dwRealLen = dwDataLen / 2;
-	BYTE *pbTemp;
-	char cTemp[5] = {'\0', '\0', '\0', '\0', '\0'};
-
-	if ((dwRealLen * 2) != dwDataLen)
-		return CC_INVALID_PARAMETER;
-	pbTemp = new BYTE[dwRealLen];
-
-	FromHex(pbTemp, pbData, dwRealLen);
-
-	// OK! в pbTemp находится BLOB
-	if (!CryptImportKey(phProv, pbTemp, dwRealLen, 0, 0, phUserKey)){
-		delete pbTemp;
-		return CC_UNKNOWN_ERROR;
-	}
-	delete pbTemp;
-	return CC_NOERRORS;
+	return CC_ERROR;
 }
 
 ECryptoClientErrors CCryptoClient::ImportPublicKeyBin(BYTE *pbData, DWORD dwDataLen, HCRYPTKEY *phUserKey)
@@ -515,116 +499,6 @@ ECryptoClientErrors CCryptoClient::_ExportPublicKey(BYTE *pbData, DWORD *pdwData
 	ToHex1(pbData, pbTemp, dwTemp);
 
 	delete pbTemp;
-	return CC_NOERRORS;
-}
-
-ECryptoClientErrors CCryptoClient::CipherMessage(BYTE *pbMsg, DWORD *pdwLenMsg, BYTE *pbPKey, DWORD dwLenPKey, BYTE **pbMsg1, DWORD *pdwLenMsg1)
-{
-	DWORD nError;
-	HCRYPTKEY hUserKey;
-	HCRYPTKEY hSessionKey;
-	// буфер для хранения блоба сессионного ключа
-	BYTE *_pbData = NULL;
-	DWORD _dwDataLen = 0;
-	BYTE *pbData = NULL;
-	DWORD dwDataLen = 0;
-	DWORD dwOldLenMsg;
-	char er[2000];
-
-	
-	if (CreateNewSessionKey(&hSessionKey) != CC_NOERRORS)
-		return CC_UNKNOWN_ERROR;
-
-	// получаем размер вектора инициализации ключа KP_IV
-	DWORD dwIV;
-	if (!CryptGetKeyParam(hSessionKey, KP_IV, NULL, &dwIV, 0))
-		return CC_UNKNOWN_ERROR;
-	DWORD _dwIV = dwIV * 2;
-
-	// получаем вектор инициализации ключа KP_IV
-	BYTE *_pbIV = new BYTE[dwIV];
-	if (!CryptGetKeyParam(hSessionKey, KP_IV, _pbIV, &dwIV, 0))
-		return CC_UNKNOWN_ERROR;
-	BYTE *pbIV = new BYTE[dwIV * 2];
-	ToHex(pbIV, _pbIV, dwIV);
-	delete _pbIV;
-
-	if (ImportPublicKeyOnExchangeKey(pbPKey, dwLenPKey, &hUserKey) != CC_NOERRORS)
-		return CC_UNKNOWN_ERROR;
-	
-	if (!CryptExportKey(hSessionKey, hUserKey, SIMPLEBLOB, 0, NULL, &_dwDataLen)){
-		nError = GetLastError();
-		MyCodeError(er, nError);
-		MessageBox(NULL, er, "", MB_OK);
-		return CC_UNKNOWN_ERROR;
-	}
-
-	
-	dwDataLen = _dwDataLen * 2;
-	_pbData = new BYTE[_dwDataLen];
-	pbData = new BYTE[dwDataLen];
-	
-	if (!CryptExportKey(hSessionKey, hUserKey, SIMPLEBLOB, 0, _pbData, &_dwDataLen)){
-		delete _pbData;
-		delete pbData;
-		return CC_UNKNOWN_ERROR;
-	}
-
-	
-	
-	ToHex(pbData, _pbData, _dwDataLen);
-	
-	delete _pbData;
-	// Ура! в pbData экспортированный сессионный ключ
-	// определяем длину буфера для зашифрованных данных
-	dwOldLenMsg = *pdwLenMsg;
-	if (!CryptEncrypt(hSessionKey, 0, TRUE, 0, NULL, pdwLenMsg, *pdwLenMsg)){
-		delete pbData;
-		return CC_UNKNOWN_ERROR;
-	}
-	// Ура! в *pdwLenMsg количество байт в зашифрованном сообщении
-
-	// 8 байт размер сессионного ключа + 8 байт размер IV + KP_IV + сессионный ключ + шифрованное сообщение
-	*pdwLenMsg1 = dwIV * 2 + 8 + *pdwLenMsg * 2 + dwDataLen + 8 + 1;
-	BYTE *LenKey = new BYTE[8];
-	ToHex(LenKey, (BYTE*)&dwDataLen, 4);
-	BYTE *LenIV = new BYTE[8];
-	ToHex(LenIV, (BYTE*)&_dwIV, 4);
-	*pbMsg1 = new BYTE[*pdwLenMsg1];
-	// длина ключа
-	memcpy((void*)*pbMsg1, (void*)LenKey, 8);
-	// сам ключ
-	memcpy((void*)(*pbMsg1 + 8), (void*)pbData, dwDataLen);
-	// длина IV
-	memcpy((void*)(*pbMsg1 + 8 + dwDataLen), (void*)LenIV, 8);
-	// сам IV
-	memcpy((void*)(*pbMsg1 + 8 + dwDataLen + 8), (void*)pbIV, dwIV * 2);
-	//BYTE *tmp = new BYTE[*pdwLenMsg * 2];    // ????? зачем такой большой буфер
-	DWORD dwRealLen;
-	if (*pdwLenMsg >= dwOldLenMsg)
-		dwRealLen = *pdwLenMsg;
-	else
-		dwRealLen = dwOldLenMsg;
-	BYTE *tmp = new BYTE[dwRealLen];
-	memcpy((void*)tmp, (void*)pbMsg, dwOldLenMsg);
-	delete LenKey;
-	delete pbData;
-	delete LenIV;
-	delete pbIV;
-	
-	//
-	if (!CryptEncrypt(hSessionKey, 0, TRUE, 0, tmp, &dwOldLenMsg, dwRealLen)){
-		delete tmp;
-		delete pbMsg1;
-		return CC_UNKNOWN_ERROR;
-	}
-
-	*pdwLenMsg = dwOldLenMsg;
-
-	ToHex((BYTE*)(*pbMsg1 + 8 + dwDataLen + 8 + dwIV * 2), tmp, *pdwLenMsg);
-	delete tmp;
-	(*pbMsg1)[*pdwLenMsg1 - 1] = 0;
-
 	return CC_NOERRORS;
 }
 
@@ -1134,7 +1008,7 @@ void ToHex1(BYTE *dest, BYTE *src, DWORD ln) {
 	wchar_t *d = (wchar_t*)dest;
 	for (DWORD i = 0; i < ln; i++) {
 		swprintf(d, ln * 4 + 2, L"%02X", src[i]);
-		d += 4;
+		d += 2;
 	}
 }
 
@@ -1149,14 +1023,23 @@ void FromHex(BYTE *dest, BYTE *src, DWORD ln){
 	}
 }
 
+void FromHex1(BYTE *dest, wchar_t *src, DWORD ln) {
+	wchar_t *endptr;
+	for (DWORD i = 0; i < ln; i++) {
+		endptr = src + 2;
+		dest[i] = (BYTE)wcstoul(src, &endptr, 16);
+		src += 2;
+	}
+}
+
 char *Number2String(DWORD n){
 	char *ccc = new char[50];
 	return _itoa(n, ccc, 10);
 }
 
-bool ToFile(char *fname, BYTE *buf, DWORD lenbuf){
+bool ToFile(wchar_t *fname, BYTE *buf, DWORD lenbuf){
 	DWORD nWritten;
-	HANDLE h = CreateFile(fname, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+	HANDLE h = CreateFileW(fname, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
 	if (h == INVALID_HANDLE_VALUE){
 		//MessageBox(NULL, "11", "", MB_OK);
 		return false;
@@ -1169,12 +1052,12 @@ bool ToFile(char *fname, BYTE *buf, DWORD lenbuf){
 	return true;
 }
 
-bool FromFile(char *fname, BYTE *buf, DWORD *lenbuf){
+bool FromFile(wchar_t *fname, BYTE *buf, DWORD *lenbuf){
 	DWORD dwHigh;
 	DWORD dwRead;
 	if (!FileExist(fname))
 		return false;
-	HANDLE h = CreateFile(fname, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
+	HANDLE h = CreateFileW(fname, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
 	if (h == INVALID_HANDLE_VALUE){
 		
 		return false;
@@ -1197,16 +1080,16 @@ bool FromFile(char *fname, BYTE *buf, DWORD *lenbuf){
 	return true;
 }
 
-bool FileExist(char *fname){
-	WIN32_FIND_DATA ffd;
-	HANDLE h = FindFirstFile(fname, &ffd);
+bool FileExist(wchar_t *fname){
+	WIN32_FIND_DATAW ffd;
+	HANDLE h = FindFirstFileW(fname, &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	else
 		return true;
 }
 
-bool CCryptoClient::SaveRegister(char *fname)
+bool CCryptoClient::SaveRegister(wchar_t *fname)
 {
 	HANDLE hToken;
 	LUID luid;
@@ -1268,7 +1151,7 @@ bool CCryptoClient::SaveRegister(char *fname)
 		return false;
 	}
 
-	rc=RegSaveKey(hKeyToSave, fname, NULL);
+	rc=RegSaveKeyW(hKeyToSave, fname, NULL);
 	//rc=RegSaveKeyEx(hKeyToSave, fname, NULL, REG_STANDARD_FORMAT);
 
 	if (rc != ERROR_SUCCESS){

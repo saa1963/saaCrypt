@@ -34,16 +34,17 @@ enum ECryptoKeyTypes{
 void ToHex(BYTE *dest, BYTE *src, DWORD ln);
 void ToHex1(BYTE *dest, BYTE *src, DWORD ln);
 void FromHex(BYTE *dest, BYTE *src, DWORD ln);
+void FromHex1(BYTE *dest, wchar_t *src, DWORD ln);
 void MyCodeError(char *er, DWORD nError);
 char *Number2String(DWORD n);
-bool ToFile(char *fname, BYTE *buf, DWORD lenbuf);
-bool FromFile(char *fname, BYTE *buf, DWORD *lenbuf);
-bool FileExist(char *fname);
+bool ToFile(wchar_t *fname, BYTE *buf, DWORD lenbuf);
+bool FromFile(wchar_t *fname, BYTE *buf, DWORD *lenbuf);
+bool FileExist(wchar_t *fname);
 
 class CCryptoClient  
 {
 public:
-	bool SaveRegister(char *fname);
+	bool SaveRegister(wchar_t *fname);
 	ECryptoClientErrors CCryptoClient::CipherMessage(BYTE *pbMsg, DWORD *pdwLenMsg, BYTE *pbPKey, DWORD dwLenPKey, BYTE **pbMsg1, DWORD *pdwLenMsg1);
 	ECryptoClientErrors CCryptoClient::CipherMessageBin(BYTE *pbMsg, DWORD dwLenMsg, BYTE *pbPKey, DWORD dwLenPKey, BYTE **pbMsg1, DWORD *pdwLenMsg1);
 	ECryptoClientErrors CCryptoClient::DeCipherMessage(BYTE *pbMsg, DWORD *pdwLenMsg, BYTE *pbPKey, DWORD dwLenPKey, BYTE **pbMsg1, DWORD *pdwLenMsg1);
