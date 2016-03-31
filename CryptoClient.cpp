@@ -1024,10 +1024,12 @@ void FromHex(BYTE *dest, BYTE *src, DWORD ln){
 }
 
 void FromHex1(BYTE *dest, wchar_t *src, DWORD ln) {
-	wchar_t *endptr;
+	wchar_t temp[3];
+	temp[2] = L'\0';
 	for (DWORD i = 0; i < ln; i++) {
-		endptr = src + 2;
-		dest[i] = (BYTE)wcstoul(src, &endptr, 16);
+		temp[0] = *src;
+		temp[1] = *(src + 1);
+		dest[i] = (BYTE)wcstoul(temp, NULL, 16);
 		src += 2;
 	}
 }
