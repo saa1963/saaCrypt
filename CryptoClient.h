@@ -8,6 +8,7 @@
 #include "crypt32.h"
 #include "WinCryptEx.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 

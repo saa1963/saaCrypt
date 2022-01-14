@@ -25,6 +25,7 @@ Global
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Debug|Win32.Build.0 = Debug|Win32
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Debug|x64.ActiveCfg = Debug|Win32
+		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Debug|x64.Build.0 = Debug|Win32
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Release MinDependency|Win32.ActiveCfg = Release MinDependency|Win32
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Release MinDependency|Win32.Build.0 = Release MinDependency|Win32
 		{E4FFD331-E718-4CE8-908F-C9DD2CA6CACE}.Release MinDependency|x64.ActiveCfg = Release MinDependency|Win32
